@@ -13,7 +13,7 @@ $userId = $_SESSION['id'];
 try {
     $conn = getDbConnection();
 
-    $stmt_user = $conn->prepare('SELECT username, email, mobile, multiuser, start_date, end_date, date_one_connect, customer_user, status, referral, `desc` FROM users WHERE id = :id');
+    $stmt_user = $conn->prepare('SELECT username, email, mobile, multiuser, start_date, end_date, date_one_connect, customer_user, status, traffic, referral, `desc` FROM users WHERE id = :id');
     $stmt_user->bindParam(':id', $userId);
     $stmt_user->execute();
 
@@ -44,6 +44,7 @@ try {
     $date_one_connect = $user['date_one_connect'];
     $customer_user = $user['customer_user'];
     $status = $user['status'];
+    $traffic = $user['traffic'];
     $referral = $user['referral'];
     $desc = $user['desc'];
 

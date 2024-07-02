@@ -13,8 +13,6 @@ require "assets/php/dashboard_handler.php";
 </head>
 <body>
 
-
-
 <script src="assets/js/script.js"></script>
 </body>
 </html>
