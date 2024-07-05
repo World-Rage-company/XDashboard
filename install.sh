@@ -49,8 +49,8 @@ configure_needrestart() {
 
 get_user_input() {
   while true; do
-    read -p "Please enter Xpanel username: " username
-    read -sp "Please enter Xpanel password: " password
+    read -e "Please enter Xpanel username: " username
+    read "Please enter Xpanel password: " password
     echo ""
 
     mysql -u"$username" -p"$password" -e "exit" 2>/dev/null
@@ -63,34 +63,46 @@ get_user_input() {
   done
 }
 
-copy_web_xdashboard() {
-  local dest_dir="/var/www/html/example/"
+download_and_copy_files() {
+  echo -e "${YELLOW}Downloading Web_XDashboard contents...${NC}"
+  wget -q https://github.com/World-Rage-company/XDashboard/archive/refs/heads/master.zip -O /tmp/Web_XDashboard.zip
+  if [ $? -ne 0 ]; then
+    echo -e "${RED}Error downloading Web_XDashboard contents.${NC}"
+    exit 1
+  fi
 
-  if [ -d "Web_XDashboard" ]; then
-    cp -r Web_XDashboard/* "$dest_dir"
-    if [ $? -eq 0 ]; then
-      echo -e "${GREEN}Copying Web_XDashboard contents succeeded.${NC}"
-      sed -i "s/define('DB_USER', '.*');/define('DB_USER', '$username');/" "$dest_dir/assets/php/database/config.php"
-      sed -i "s/define('DB_PASS', '.*');/define('DB_PASS', '$password');/" "$dest_dir/assets/php/database/config.php"
-      echo -e "${GREEN}Updated config.php with username and password.${NC}"
-    else
-      echo -e "${RED}Error copying Web_XDashboard contents.${NC}"
-      exit 1
-    fi
-  else
-    echo -e "${RED}Web_XDashboard directory not found.${NC}"
+  echo -e "${YELLOW}Extracting Web_XDashboard contents...${NC}"
+  unzip -q /tmp/Web_XDashboard.zip -d /tmp
+  if [ $? -ne 0 ]; then
+    echo -e "${RED}Error extracting Web_XDashboard contents.${NC}"
+    exit 1
+  fi
+
+  echo -e "${YELLOW}Copying Web_XDashboard contents...${NC}"
+  cp -r /tmp/XDashboard-master/Web_XDashboard/* /var/www/html/example/
+  if [ $? -ne 0 ]; then
+    echo -e "${RED}Error copying Web_XDashboard contents.${NC}"
     exit 1
   fi
 }
 
-end_installation() {
-  echo -e "${YELLOW}Installation completed successfully.${NC}"
-  echo -e "${YELLOW}End of installation.${NC}"
+configure_database() {
+  echo -e "${YELLOW}Configuring database...${NC}"
+  sed -i "s/define('DB_USER', 'username');/define('DB_USER', '$username');/" /var/www/html/example/assets/php/database/config.php
+  sed -i "s/define('DB_PASS', 'password');/define('DB_PASS', '$password');/" /var/www/html/example/assets/php/database/config.php
+  if [ $? -eq 0 ]; then
+    echo -e "${GREEN}Database configured successfully.${NC}"
+  else
+    echo -e "${RED}Error configuring database.${NC}"
+    exit 1
+  fi
 }
 
 check_os_version
 check_xpanel_installed
 configure_needrestart
 get_user_input
-copy_web_xdashboard
-end_installation
+download_and_copy_files
+configure_database
+
+echo -e "${GREEN}Installation completed successfully.${NC}"
