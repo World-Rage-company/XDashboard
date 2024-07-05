@@ -49,8 +49,8 @@ configure_needrestart() {
 
 get_user_input() {
   while true; do
-    read -e "Please enter Xpanel username: " username
-    read -e "Please enter Xpanel password: " password
+    read -p "Please enter Xpanel username: " username
+    read -p "Please enter Xpanel password: " password
     echo ""
 
     mysql -u"$username" -p"$password" -e "exit" 2>/dev/null
