@@ -50,11 +50,11 @@ configure_needrestart() {
 get_user_input() {
   while true; do
     read -p "Please enter Xpanel username: " username
-    read -p "Please enter Xpanel password: " password
+    read -sp "Please enter Xpanel password: " password
     echo ""
 
-    mysql -u"$username" -p"$password" -e "exit" 2>/dev/null
-    if [ $? -eq 0 ]; then
+    # Test MySQL connection
+    if mysql -u"$username" -p"$password" -e "exit" 2>/dev/null; then
       echo -e "${GREEN}Successfully connected to the database.${NC}"
       break
     else
@@ -88,6 +88,8 @@ download_and_copy_files() {
 
 configure_database() {
   echo -e "${YELLOW}Configuring database...${NC}"
+  mysql_config_editor set --login-path=xpanel --host=localhost --user="$username" --password="$password"
+
   sed -i "s/define('DB_USER', 'username');/define('DB_USER', '$username');/" /var/www/html/example/assets/php/database/config.php
   sed -i "s/define('DB_PASS', 'password');/define('DB_PASS', '$password');/" /var/www/html/example/assets/php/database/config.php
   if [ $? -eq 0 ]; then
@@ -98,6 +100,7 @@ configure_database() {
   fi
 }
 
+# Main script flow
 check_os_version
 check_xpanel_installed
 configure_needrestart
