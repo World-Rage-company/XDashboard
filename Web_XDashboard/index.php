@@ -129,7 +129,7 @@ require "assets/php/dashboard_handler.php";
 </section>
 
 <section class="support">
-    <div class="text">Support Page</div>
+    <div class="text">Support</div>
 </section>
 
 <script src="assets/js/script.js"></script>
