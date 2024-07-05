@@ -63,27 +63,37 @@ get_user_input() {
   done
 }
 
-configure_xdashboard() {
-  local username="$1"
-  local password="$2"
-
-  echo -e "${YELLOW}Copying Web_XDashboard contents...${NC}"
-  cp -r Web_XDashboard/* /var/www/html/example/
-  if [ $? -eq 0 ]; then
-    echo -e "${GREEN}Web_XDashboard contents copied successfully.${NC}"
-  else
-    echo -e "${RED}Error copying Web_XDashboard contents.${NC}"
+download_and_copy_files() {
+  echo -e "${YELLOW}Downloading Web_XDashboard contents...${NC}"
+  wget -q https://github.com/World-Rage-company/XDashboard/archive/refs/heads/master.zip -O /tmp/Web_XDashboard.zip
+  if [ $? -ne 0 ]; then
+    echo -e "${RED}Error downloading Web_XDashboard contents.${NC}"
     exit 1
   fi
 
-  local config_file="/var/www/html/example/assets/php/database/config.php"
-  echo -e "${YELLOW}Configuring database settings...${NC}"
-  sed -i "s/define('DB_USER', 'username');/define('DB_USER', '$username');/" "$config_file"
-  sed -i "s/define('DB_PASS', 'password');/define('DB_PASS', '$password');/" "$config_file"
+  echo -e "${YELLOW}Extracting Web_XDashboard contents...${NC}"
+  unzip -q /tmp/Web_XDashboard.zip -d /tmp
+  if [ $? -ne 0 ]; then
+    echo -e "${RED}Error extracting Web_XDashboard contents.${NC}"
+    exit 1
+  fi
+
+  echo -e "${YELLOW}Copying Web_XDashboard contents...${NC}"
+  cp -r /tmp/XDashboard-master/Web_XDashboard/* /var/www/html/example/
+  if [ $? -ne 0 ]; then
+    echo -e "${RED}Error copying Web_XDashboard contents.${NC}"
+    exit 1
+  fi
+}
+
+configure_database() {
+  echo -e "${YELLOW}Configuring database...${NC}"
+  sed -i "s/define('DB_USER', 'username');/define('DB_USER', '$username');/" /var/www/html/example/assets/php/database/config.php
+  sed -i "s/define('DB_PASS', 'password');/define('DB_PASS', '$password');/" /var/www/html/example/assets/php/database/config.php
   if [ $? -eq 0 ]; then
-    echo -e "${GREEN}Database settings configured successfully.${NC}"
+    echo -e "${GREEN}Database configured successfully.${NC}"
   else
-    echo -e "${RED}Error configuring database settings.${NC}"
+    echo -e "${RED}Error configuring database.${NC}"
     exit 1
   fi
 }
@@ -92,8 +102,7 @@ check_os_version
 check_xpanel_installed
 configure_needrestart
 get_user_input
-username="$username"
-password="$password"
-configure_xdashboard "$username" "$password"
+download_and_copy_files
+configure_database
 
 echo -e "${GREEN}Installation completed successfully.${NC}"
