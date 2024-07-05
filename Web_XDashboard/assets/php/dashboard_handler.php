@@ -52,6 +52,34 @@ try {
     $upload = $traffic_info['upload'];
     $total_traffic = $traffic_info['total'];
 
+    // Calculate remaining days for Subscription
+    $current_date = date('Y-m-d');
+    $days_left = '-';
+    $progress_percentage = 0;
+
+    if (!empty($end_date)) {
+        $days_left = ceil((strtotime($end_date) - strtotime($current_date)) / (60 * 60 * 24));
+        $days_total = ceil((strtotime($end_date) - strtotime($start_date)) / (60 * 60 * 24));
+        $progress_percentage = ($days_total - $days_left) / $days_total * 100;
+    } else {
+        $progress_percentage = 100;
+    }
+
+    // Calculate remaining data for Traffic
+    $remaining_data = '-';
+    $data_used_percentage = 0;
+
+    if (!empty($traffic)) {
+        $remaining_data = $traffic - $total_traffic;
+        if ($traffic > 0) {
+            $data_used_percentage = ($total_traffic / $traffic) * 100;
+        } else {
+            $data_used_percentage = 100;
+        }
+    } else {
+        $data_used_percentage = 100;
+    }
+
 } catch (PDOException $e) {
     error_log("Database error: " . $e->getMessage());
     echo "Something went wrong. Please try again.";
