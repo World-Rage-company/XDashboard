@@ -11,7 +11,7 @@
 Supported operating systems<br>
 - **Ubuntu 18+ (recommended: Ubuntu 20)** <br>
 
-To install the X-Panel simply input the following command in the terminal:<br>
+To install the X-Dashboard simply input the following command in the terminal:<br>
 
 **Nginx Web Server**
 
