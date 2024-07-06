@@ -102,14 +102,14 @@ require "assets/php/dashboard_handler.php";
                 <span class="card-title">Traffic</span>
             </div>
             <div class="card-content">
-                <p><strong>Download:</strong> <?php echo $download; ?></p>
-                <p><strong>Upload:</strong> <?php echo $upload; ?></p>
-                <p><strong>Total:</strong> <?php echo $total_traffic; ?></p>
+                <p><strong>Download:</strong> <?php echo formatTraffic($download); ?></p>
+                <p><strong>Upload:</strong> <?php echo formatTraffic($upload); ?></p>
+                <p><strong>Total:</strong> <?php echo formatTraffic($total_traffic); ?></p>
                 <div class="progress-bar">
                     <div class="progress" style="width: <?php echo $data_used_percentage; ?>%;"></div>
                 </div>
                 <?php if (!empty($traffic)): ?>
-                    <p><strong>Remaining Data:</strong> <?php echo $remaining_data; ?> GB</p>
+                    <p><strong>Remaining Data:</strong> <?php echo formatTraffic($remaining_data); ?></p>
                 <?php else: ?>
                     <p><strong>Data Limit:</strong> Unlimited</p>
                 <?php endif; ?>

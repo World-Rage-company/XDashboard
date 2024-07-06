@@ -52,6 +52,15 @@ try {
     $upload = $traffic_info['upload'];
     $total_traffic = $traffic_info['total'];
 
+    // Function to format traffic
+    function formatTraffic($traffic) {
+        if ($traffic < 1024) {
+            return $traffic . ' MB';
+        } else {
+            return round($traffic / 1024, 2) . ' GB';
+        }
+    }
+
     // Calculate remaining days for Subscription
     $current_date = date('Y-m-d');
     $days_left = '-';
