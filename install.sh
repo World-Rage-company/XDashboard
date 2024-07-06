@@ -3,6 +3,7 @@
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
 NC='\033[0m'
 
 REPO_URL="https://github.com/World-Rage-company/XDashboard"
@@ -146,12 +147,35 @@ add_nginx_config() {
   echo -e "${GREEN}Nginx configuration added successfully.${NC}"
 }
 
+progress_bar() {
+  local duration=${1:-10}  # Default duration in seconds
+  local interval=0.25       # Update interval in seconds
+  local count=$(((duration * 4) / interval))
+  local progress_char="▓"
+  local track_char="░"
+
+  echo -n "Progress: "
+  for ((i = 0; i < count; i++)); do
+    echo -ne "${progress_char}"
+    sleep $interval
+  done
+  echo -e " ${GREEN}Complete${NC}"
+}
+
 check_os_version
 check_xpanel_installed
 check_xdashboard_installed
 configure_needrestart
+
+# Adding a progress bar for installation
+echo -e "${YELLOW}Installing XDashboard...${NC}"
 install_xdashboard
+progress_bar
+
 configure_database
 add_nginx_config
 
 systemctl restart nginx
+
+# Displaying final URL with clickable functionality
+echo -e "${BLUE}To access XDashboard, visit ${NC}${GREEN}https://$domain:$port${NC}"
