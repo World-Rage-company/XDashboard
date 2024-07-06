@@ -73,6 +73,7 @@ body.dark {
 .sidebar .icon {
     min-width: 60px;
     border-radius: 6px;
+    object-fit: cover;
 }
 
 .sidebar .icon {
@@ -134,6 +135,7 @@ header .image-text .profession {
 
 .sidebar header .image img {
     width: 40px;
+    object-fit: cover;
     border-radius: 6px;
 }
 
