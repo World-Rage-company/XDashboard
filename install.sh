@@ -148,9 +148,9 @@ add_nginx_config() {
 }
 
 progress_bar() {
-  local duration=${1:-10}  # Default duration in seconds
-  local interval=0.25       # Update interval in seconds
-  local count=$(((duration * 4) / interval))
+  local duration=${1:-10}
+  local interval=1
+  local count=$((duration / interval))
   local progress_char="▓"
   local track_char="░"
 
