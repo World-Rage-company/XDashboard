@@ -167,7 +167,6 @@ check_xpanel_installed
 check_xdashboard_installed
 configure_needrestart
 
-# Adding a progress bar for installation
 echo -e "${YELLOW}Installing XDashboard...${NC}"
 install_xdashboard
 progress_bar
@@ -177,5 +176,4 @@ add_nginx_config
 
 systemctl restart nginx
 
-# Displaying final URL with clickable functionality
 echo -e "${BLUE}To access XDashboard, visit ${NC}${GREEN}https://$domain:$port${NC}"

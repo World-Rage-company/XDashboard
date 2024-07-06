@@ -22,7 +22,7 @@ require "assets/php/dashboard_handler.php";
             </span>
             <div class="text logo-text">
                 <span class="name">XDashboard</span>
-                <span class="profession">V1.0.0</span>
+                <span class="profession">VBeta</span>
             </div>
         </div>
         <i class='bx bx-chevron-right toggle'></i>
