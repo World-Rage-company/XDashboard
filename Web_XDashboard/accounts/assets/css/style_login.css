@@ -84,6 +84,7 @@ body {
     -webkit-backdrop-filter: blur(25px);
     backdrop-filter: blur(25px);
     border: 1px solid rgba(59,59,59,0.25);
+    color: #ebe9fc;
     border-radius: 10px;
     font-size: 16px;
     outline: none;
