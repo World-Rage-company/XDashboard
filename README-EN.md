@@ -21,13 +21,13 @@
 	</a>
 </p>
 
-### نصب
-سیستم عامل مورد نیاز<br>
-- **Ubuntu 18+ (پیشنهادی :Ubuntu 20)** <br>
+### Installation guide
+Supported operating systems<br>
+- **Ubuntu 18+ (recommended: Ubuntu 20)** <br>
 
-برای نصب کافیست دستور زیر را وارد کنید<br>
+To install the X-Dashboard simply input the following command in the terminal:<br>
 
-**نصب XDashboard**
+**XDashboard installation**
 
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/World-Rage-company/XDashboard/master/install.sh --ipv4)
