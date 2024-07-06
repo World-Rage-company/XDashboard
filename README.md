@@ -11,9 +11,9 @@
 Supported operating systems<br>
 - **Ubuntu 18+ (recommended: Ubuntu 20)** <br>
 
-To install the X-Panel simply input the following command in the terminal:<br>
+To install the X-Dashboard simply input the following command in the terminal:<br>
 
-**Nginx Web Server**
+**XDashboard installation**
 
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/World-Rage-company/XDashboard/master/install.sh --ipv4)
