@@ -11,7 +11,7 @@ configure_nginx() {
 
 server {
     listen 80;
-    server_name example.com;
+    server_name example.com;  # Replace with your server name
     root /var/www/html/xd;
     index index.php index.html;
 
@@ -21,7 +21,7 @@ server {
 
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;  # Adjust PHP version if necessary
         fastcgi_param PHP_VALUE "memory_limit=4096M";
     }
 
