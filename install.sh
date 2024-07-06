@@ -8,7 +8,6 @@ NC='\033[0m'
 REPO_URL="https://github.com/World-Rage-company/XDashboard"
 INSTALL_DIR="/var/www/html/xd"
 TEMP_DIR="/tmp/XDashboard"
-CONFIGURE_SCRIPT="bash_script/configure.sh"
 
 if [ "$EUID" -ne 0 ]; then
   echo -e "${RED}Please run this script as root.${NC}"
@@ -90,14 +89,9 @@ install_xdashboard() {
   rm -rf "$TEMP_DIR"
 }
 
-configure_application() {
-  echo -e "${YELLOW}Running configuration script...${NC}"
-  bash "$INSTALL_DIR/$CONFIGURE_SCRIPT"
-}
-
 configure_database() {
-  read -p "Enter MySQL username: " db_user
-  read -sp "Enter MySQL password: " db_pass
+  read -p "Enter XPanel username: " db_user
+  read -sp "Enter XPanel password: " db_pass
   echo
 
   mysql -u"$db_user" -p"$db_pass" -e "exit"
@@ -111,10 +105,53 @@ configure_database() {
   echo -e "${GREEN}Database configured successfully.${NC}"
 }
 
+add_nginx_config() {
+  read -p "Enter the domain or IP address of your server: " domain
+  read -p "Enter the port number for the new nginx server (leave blank for random): " port
+
+  if [ -z "$port" ]; then
+    port=$(( ( RANDOM % 1000 )  + 9000 ))
+  fi
+
+  echo -e "${YELLOW}Adding nginx configuration for $domain on port $port...${NC}"
+
+  nginx_config="
+  server {
+      listen $port ssl;
+      server_name $domain;
+      root $INSTALL_DIR;
+      index index.php index.html;
+
+      ssl_certificate /etc/letsencrypt/live/$domain/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/$domain/privkey.pem;
+
+      location / {
+          try_files \$uri \$uri/ /index.php?\$query_string;
+      }
+
+      location ~ \.php$ {
+          include snippets/fastcgi-php.conf;
+          fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+          fastcgi_param PHP_VALUE \"memory_limit=4096M\";
+      }
+
+      location ~ /\.ht {
+          deny all;
+      }
+  }
+  "
+
+  echo "$nginx_config" | sudo tee -a /etc/nginx/sites-available/default > /dev/null
+
+  echo -e "${GREEN}Nginx configuration added successfully.${NC}"
+}
+
 check_os_version
 check_xpanel_installed
 check_xdashboard_installed
 configure_needrestart
 install_xdashboard
-configure_application
 configure_database
+add_nginx_config
+
+systemctl restart nginx
