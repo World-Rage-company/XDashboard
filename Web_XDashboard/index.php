@@ -87,7 +87,7 @@ require "assets/php/dashboard_handler.php";
 </nav>
 
 <section class="dashboard">
-    <div class="text"><?php echo $username; ?></div>
+    <div class="text" data-key="dashboard">Dashboard</div>
     <div class="cards">
         <div class="card">
             <div class="card-header">
@@ -95,6 +95,7 @@ require "assets/php/dashboard_handler.php";
                 <span class="card-title" data-key="userInfo">User Info</span>
             </div>
             <div class="card-content">
+                <p><strong data-key="username">Username:</strong> <?php echo $username; ?></p>
                 <p><strong data-key="email">Email:</strong> <?php echo $email; ?></p>
                 <p><strong data-key="mobile">Mobile:</strong> <?php echo $mobile; ?></p>
                 <p><strong data-key="status">Status:</strong> <?php echo $status; ?></p>

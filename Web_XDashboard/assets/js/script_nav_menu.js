@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
             '.nav-text[data-key="logout"]': translations[lang].logout,
             '.nav-text[data-key="language"]': translations[lang].language,
             '.card-title[data-key="userInfo"]': translations[lang].userInfo,
+            'p strong[data-key="username"]': translations[lang].username,
             'p strong[data-key="email"]': translations[lang].email,
             'p strong[data-key="mobile"]': translations[lang].mobile,
             'p strong[data-key="status"]': translations[lang].status,
