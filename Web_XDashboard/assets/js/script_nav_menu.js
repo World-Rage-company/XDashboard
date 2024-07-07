@@ -15,6 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
         modeText.innerText = savedTheme === 'dark' ? "Light mode" : "Dark mode";
     }
 
+    const savedLanguage = localStorage.getItem('language') || 'en';
+    setLanguage(savedLanguage);
+
     toggle.addEventListener("click", () => {
         sidebar.classList.toggle("close");
     });
@@ -59,6 +62,56 @@ document.addEventListener("DOMContentLoaded", () => {
             toggleLanguageMenu();
         }
     });
+
+    document.querySelectorAll('.language-menu a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const lang = this.getAttribute('data-lang');
+            setLanguage(lang);
+        });
+    });
+
+    function setLanguage(lang) {
+        localStorage.setItem('language', lang);
+        document.querySelectorAll('.language-menu li').forEach(li => {
+            li.classList.remove('active');
+        });
+        document.querySelector(`.language-menu a[data-lang="${lang}"]`).parentElement.classList.add('active');
+
+        const elementsToTranslate = {
+            '.nav-text[data-key="dashboard"]': translations[lang].dashboard,
+            '.nav-text[data-key="training"]': translations[lang].training,
+            '.nav-text[data-key="support"]': translations[lang].support,
+            '.nav-text[data-key="logout"]': translations[lang].logout,
+            '.nav-text[data-key="language"]': translations[lang].language,
+            '.card-title[data-key="userInfo"]': translations[lang].userInfo,
+            'p strong[data-key="email"]': translations[lang].email,
+            'p strong[data-key="mobile"]': translations[lang].mobile,
+            'p strong[data-key="status"]': translations[lang].status,
+            '.card-title[data-key="subscription"]': translations[lang].subscription,
+            'p strong[data-key="startDate"]': translations[lang].startDate,
+            'p strong[data-key="endDate"]': translations[lang].endDate,
+            'p strong[data-key="daysRemaining"]': translations[lang].daysRemaining,
+            '.card-title[data-key="traffic"]': translations[lang].traffic,
+            'p strong[data-key="download"]': translations[lang].download,
+            'p strong[data-key="upload"]': translations[lang].upload,
+            'p strong[data-key="total"]': translations[lang].total,
+            'p strong[data-key="remainingData"]': translations[lang].remainingData,
+            'p strong[data-key="unlimited"]': translations[lang].unlimited,
+            '.card-title[data-key="additionalInfo"]': translations[lang].additionalInfo,
+            'p strong[data-key="referral"]': translations[lang].referral,
+            'p strong[data-key="description"]': translations[lang].description
+        };
+
+        for (const key in elementsToTranslate) {
+            const element = document.querySelector(key);
+            if (element) {
+                element.textContent = elementsToTranslate[key];
+            }
+        }
+
+        console.log(`Language set to: ${lang}`);
+    }
 });
 
 function showSection(section) {

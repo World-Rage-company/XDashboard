@@ -314,6 +314,11 @@ body.dark .mode .sun-moon i.moon {
     color: var(--sidebar-color);
 }
 
+.language-menu li.active a {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
 .menu-bar .bottom-content .toggle-switch {
     position: absolute;
     right: 0;
