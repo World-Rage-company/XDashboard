@@ -407,7 +407,7 @@ body.dark .dashboard .text {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    margin: 20px;
+    margin: 10px;
 }
 
 .card {
@@ -416,7 +416,7 @@ body.dark .dashboard .text {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     flex: 1;
     min-width: 250px;
-    max-width: 300px;
+    max-width: 350px;
     padding: 20px;
 }
 
@@ -463,15 +463,17 @@ body.dark .dashboard .text {
     transition: width 0.3s ease;
 }
 
-
-@media (max-width: 768px) {
+@media (max-width: 650px) {
     .cards {
         flex-direction: column;
         align-items: center;
     }
-
     .card {
-        max-width: 90%;
+        max-width: 95%;
+        margin-bottom: 10px;
+    }
+    .dashboard .text {
+        font-size: 25px;
     }
 }
 
@@ -500,7 +502,7 @@ body.dark .dashboard .text {
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 20px;
     border-radius: 10px;
-    margin: 20px 60px;
+    margin: 10px 20px;
 }
 
 .training .training-content p {
