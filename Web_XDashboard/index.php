@@ -1,5 +1,5 @@
 <?php
-require "assets/php/dashboard_handler.php";
+//require "assets/php/dashboard_handler.php";
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +35,12 @@ require "assets/php/dashboard_handler.php";
                     <a href="javascript:void(0)" onclick="showSection('dashboard')">
                         <i class='bx bx-home-alt icon'></i>
                         <span class="text nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="javascript:void(0)" onclick="showSection('training')">
+                        <i class='bx bx-book icon'></i>
+                        <span class="text nav-text">Training</span>
                     </a>
                 </li>
                 <li class="nav-link">
@@ -125,6 +131,13 @@ require "assets/php/dashboard_handler.php";
                 <p><strong>Description:</strong> <?php echo $desc; ?></p>
             </div>
         </div>
+    </div>
+</section>
+
+<section class="training">
+    <div class="text">Training</div>
+    <div class="training-content">
+        <p>Training.</p>
     </div>
 </section>
 

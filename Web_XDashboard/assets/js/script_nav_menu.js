@@ -6,12 +6,20 @@ document.addEventListener("DOMContentLoaded", () => {
         modeText = body.querySelector(".mode-text"),
         logoutLink = body.querySelector(".logout-link");
 
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        body.classList.toggle("dark", savedTheme === 'dark');
+        modeText.innerText = savedTheme === 'dark' ? "Light mode" : "Dark mode";
+    }
+
     toggle.addEventListener("click", () => {
         sidebar.classList.toggle("close");
     });
 
     modeSwitch.addEventListener("click", () => {
         const isDarkMode = body.classList.toggle("dark");
+        const newTheme = isDarkMode ? 'dark' : 'light';
+        localStorage.setItem('theme', newTheme);
         modeText.innerText = isDarkMode ? "Light mode" : "Dark mode";
     });
 
@@ -32,10 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function showSection(section) {
     document.querySelector('.dashboard').style.display = 'none';
+    document.querySelector('.training').style.display = 'none';
     document.querySelector('.support').style.display = 'none';
 
     if (section === 'dashboard') {
         document.querySelector('.dashboard').style.display = 'block';
+    } else if (section === 'training') {
+        document.querySelector('.training').style.display = 'block';
     } else if (section === 'support') {
         document.querySelector('.support').style.display = 'block';
     }

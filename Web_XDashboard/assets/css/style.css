@@ -318,33 +318,6 @@ body.dark .dashboard .text {
     color: var(--text-color);
 }
 
-.support {
-    display:none;
-    position: absolute;
-    top: 0;
-    left: 250px;
-    height: 100vh;
-    width: calc(100% - 250px);
-    background-color: var(--body-color);
-    transition: var(--tran-05);
-}
-
-.support .text {
-    font-size: 30px;
-    font-weight: 500;
-    color: var(--text-color);
-    padding: 12px 60px;
-}
-
-.sidebar.close ~ .support {
-    left: 88px;
-    width: calc(100% - 88px);
-}
-
-body.dark .support .text {
-    color: var(--text-color);
-}
-
 .cards {
     display: flex;
     flex-wrap: wrap;
@@ -405,6 +378,7 @@ body.dark .support .text {
     transition: width 0.3s ease;
 }
 
+
 @media (max-width: 768px) {
     .cards {
         flex-direction: column;
@@ -414,4 +388,83 @@ body.dark .support .text {
     .card {
         max-width: 90%;
     }
+}
+
+.training {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 250px;
+    height: 100vh;
+    width: calc(100% - 250px);
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+}
+
+.training .text {
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-color);
+    padding: 12px 60px;
+}
+
+.training .training-content {
+    background: rgba(255, 255, 255, 0.7);
+    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 60px;
+}
+
+.training .training-content p {
+    margin: 0 0 10px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.sidebar.close ~ .training {
+    left: 88px;
+    width: calc(100% - 88px);
+}
+
+body.dark .training .text {
+    color: var(--text-color);
+}
+
+body.dark .training .training-content {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body.dark .training .training-content p {
+    color: #fff;
+}
+
+.support {
+    display:none;
+    position: absolute;
+    top: 0;
+    left: 250px;
+    height: 100vh;
+    width: calc(100% - 250px);
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+}
+
+.support .text {
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-color);
+    padding: 12px 60px;
+}
+
+.sidebar.close ~ .support {
+    left: 88px;
+    width: calc(100% - 88px);
+}
+
+body.dark .support .text {
+    color: var(--text-color);
 }
