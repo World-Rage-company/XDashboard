@@ -254,6 +254,66 @@ body.dark .mode .sun-moon i.moon {
     opacity: 0;
 }
 
+.sidebar .menu-bar .language-dropdown {
+    border-radius: 6px;
+    background-color: var(--primary-color-light);
+    position: relative;
+    transition: var(--tran-05);
+    cursor: pointer;
+}
+
+.language-dropdown .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 6px;
+    background-color: var(--primary-color-light);
+    transition: var(--tran-05);
+}
+
+.language-dropdown:hover {
+    background-color: var(--primary-color);
+    color: var(--sidebar-color);
+}
+
+.language-menu {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    right: 0;
+    width: 150px;
+    background-color: var(--sidebar-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    list-style: none;
+    padding: 8px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+    transform-origin: bottom;
+    transform: scaleY(0);
+    transition: transform var(--tran-05) ease-in-out;
+}
+
+.language-menu.active {
+    display: block;
+    transform: scaleY(1);
+}
+
+.language-menu li {
+    padding: 8px 16px;
+    text-align: center;
+}
+
+.language-menu li a {
+    color: var(--text-color);
+    text-decoration: none;
+    display: block;
+    transition: var(--tran-03);
+}
+
+.language-menu li a:hover {
+    color: var(--sidebar-color);
+}
+
 .menu-bar .bottom-content .toggle-switch {
     position: absolute;
     right: 0;

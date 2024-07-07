@@ -1,5 +1,5 @@
 <?php
-//require "assets/php/dashboard_handler.php";
+require "assets/php/dashboard_handler.php";
 ?>
 
 <!DOCTYPE html>
@@ -51,13 +51,25 @@
                 </li>
             </ul>
         </div>
-
         <div class="bottom-content">
             <li>
                 <a href="javascript:void(0)" class="logout-link">
                     <i class='bx bx-log-out icon'></i>
                     <span class="text nav-text">Logout</span>
                 </a>
+            </li>
+
+            <li class="language-dropdown">
+                <div class="dropdown-toggle" onclick="toggleLanguageMenu()">
+                    <i class='bx bx-globe icon'></i>
+                    <span class="text nav-text">Language</span>
+                    <i class='bx bx-chevron-up icon'></i>
+                </div>
+                <ul class="language-menu">
+                    <li><a href="#">فارسی</a></li>
+                    <li><a href="#">English</a></li>
+                    <li><a href="#">Русский</a></li>
+                </ul>
             </li>
 
             <li class="mode">

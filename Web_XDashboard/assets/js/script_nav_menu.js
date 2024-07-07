@@ -4,7 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
         toggle = body.querySelector(".toggle"),
         modeSwitch = body.querySelector(".toggle-switch"),
         modeText = body.querySelector(".mode-text"),
-        logoutLink = body.querySelector(".logout-link");
+        logoutLink = body.querySelector(".logout-link"),
+        languageDropdown = body.querySelector('.language-dropdown'),
+        languageMenu = languageDropdown.querySelector('.language-menu'),
+        dropdownToggle = languageDropdown.querySelector('.dropdown-toggle');
 
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
@@ -34,6 +37,26 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         } catch (error) {
             console.error('Error:', error);
+        }
+    });
+
+    function toggleLanguageMenu() {
+        languageMenu.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(e) {
+        if (!languageDropdown.contains(e.target)) {
+            languageMenu.classList.remove('active');
+        }
+    });
+
+    dropdownToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (sidebar.classList.contains('close')) {
+            sidebar.classList.remove('close');
+            setTimeout(toggleLanguageMenu, 300);
+        } else {
+            toggleLanguageMenu();
         }
     });
 });
