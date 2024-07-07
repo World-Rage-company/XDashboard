@@ -357,6 +357,26 @@ body.dark .switch::before {
     left: 20px;
 }
 
+.card-content p strong {
+    display: inline-block;
+}
+
+.card-content p strong[data-key="mobile"]:after {
+    content: " - ";
+}
+
+html[dir="rtl"] .card-content p strong[data-key="mobile"]:after {
+    content: " - ";
+}
+
+html[dir="rtl"] .card-content p strong[data-key="download"]:after {
+    content: " - ";
+}
+
+html[dir="rtl"] .card-content p strong[data-key="upload"]:after {
+    content: " - ";
+}
+
 .dashboard {
     position: absolute;
     top: 0;
