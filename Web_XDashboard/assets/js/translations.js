@@ -18,7 +18,7 @@ const translations = {
         upload: "Upload:",
         total: "Total:",
         remainingData: "Remaining Data:",
-        unlimited: "Unlimited",
+        unlimited: "Data Limit",
         additionalInfo: "Additional Info",
         referral: "Referral:",
         description: "Description:"
@@ -42,7 +42,7 @@ const translations = {
         upload: "آپلود:",
         total: "کل:",
         remainingData: "اطلاعات باقی‌مانده:",
-        unlimited: "نامحدود",
+        unlimited: "محدودیت داده",
         additionalInfo: "اطلاعات اضافی",
         referral: "معرف:",
         description: "توضیحات:"
@@ -66,7 +66,7 @@ const translations = {
         upload: "Загрузить:",
         total: "Всего:",
         remainingData: "Оставшиеся данные:",
-        unlimited: "Неограниченно",
+        unlimited: "Лимит данных",
         additionalInfo: "Дополнительная информация",
         referral: "Реферал:",
         description: "Описание:"
