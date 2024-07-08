@@ -135,7 +135,6 @@ add_nginx_config() {
     }
     "
   else
-    # No SSL, use server IP as domain name
     if hostname -I > /dev/null 2>&1; then
       server_ip=$(hostname -I | awk '{print $1}')
       domain=$server_ip
@@ -195,11 +194,8 @@ endINSTALL() {
     protoco="http"
   fi
 
-  echo -e "************ XDashboard************ \n"
+  echo -e "************ XDashboard ************ \n"
   echo -e "XDashboard Link : $protoco://${domain}:$port"
-  echo -e "-------- Details ----------- \n"
-  echo -e "Version : Beta"
-  echo -e "Developer : World Rage"
 }
 
 check_os_version
