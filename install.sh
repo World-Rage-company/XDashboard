@@ -117,29 +117,29 @@ add_nginx_config() {
   echo -e "${YELLOW}Adding nginx configuration for $domain on port $port...${NC}"
 
   nginx_config="
-server {
-    listen $port ssl;
-    server_name $domain;
-    root $INSTALL_DIR;
-    index index.php index.html;
+  server {
+      listen $port ssl;
+      server_name $domain;
+      root $INSTALL_DIR;
+      index index.php index.html;
 
-    ssl_certificate /etc/letsencrypt/live/$domain/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/$domain/privkey.pem;
+      ssl_certificate /etc/letsencrypt/live/$domain/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/$domain/privkey.pem;
 
-    location / {
-        try_files \$uri \$uri/ /index.php?\$query_string;
-    }
+      location / {
+          try_files \$uri \$uri/ /index.php?\$query_string;
+      }
 
-    location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
-        fastcgi_param PHP_VALUE \"memory_limit=4096M\";
-    }
+      location ~ \.php$ {
+          include snippets/fastcgi-php.conf;
+          fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+          fastcgi_param PHP_VALUE \"memory_limit=4096M\";
+      }
 
-    location ~ /\.ht {
-        deny all;
-    }
-}
+      location ~ /\.ht {
+          deny all;
+      }
+  }
   "
 
   echo "$nginx_config" | sudo tee -a /etc/nginx/sites-available/default > /dev/null
