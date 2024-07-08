@@ -555,3 +555,13 @@ body.dark .training .training-content p {
 body.dark .support .text {
     color: var(--text-color);
 }
+
+.support .support-content {
+    background: rgba(255, 255, 255, 0.7);
+    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px 20px;
+}
