@@ -212,3 +212,5 @@ configure_database
 add_nginx_config
 
 systemctl restart nginx
+
+endINSTALL
