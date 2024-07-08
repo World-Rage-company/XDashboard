@@ -116,25 +116,15 @@ add_nginx_config() {
 
   echo -e "${YELLOW}Adding nginx configuration for $domain on port $port...${NC}"
 
-  if [[ "$domain" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-    ssl_cert="/etc/nginx/self-signed.crt"
-    ssl_key="/etc/nginx/self-signed.key"
-    server_name="_"
-  else
-    ssl_cert="/etc/letsencrypt/live/$domain/fullchain.pem"
-    ssl_key="/etc/letsencrypt/live/$domain/privkey.pem"
-    server_name="$domain"
-  fi
-
   nginx_config="
 server {
     listen $port ssl;
-    server_name $server_name;
+    server_name $domain;
     root $INSTALL_DIR;
     index index.php index.html;
 
-    ssl_certificate $ssl_cert;
-    ssl_certificate_key $ssl_key;
+    ssl_certificate /etc/letsencrypt/live/$domain/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/$domain/privkey.pem;
 
     location / {
         try_files \$uri \$uri/ /index.php?\$query_string;
@@ -149,21 +139,10 @@ server {
     location ~ /\.ht {
         deny all;
     }
-
-    # Hide file extensions
-    location / {
-        try_files \$uri \$uri/ @extensionless;
-    }
-
-    location @extensionless {
-        rewrite ^/(.*)\.php$ /$1.php break;
-        rewrite ^/(.*)\.html$ /$1.html break;
-        rewrite ^/(.*)$ /$1.php;
-    }
 }
   "
 
-  echo "$nginx_config" | sudo tee /etc/nginx/sites-available/xdashboard > /dev/null
+  echo "$nginx_config" | sudo tee -a /etc/nginx/sites-available/default > /dev/null
 
   echo -e "${GREEN}Nginx configuration added successfully.${NC}"
 }
