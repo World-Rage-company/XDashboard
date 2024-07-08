@@ -195,7 +195,9 @@ endINSTALL() {
 
   echo -e "************ XDashboard************ \n"
   echo -e "XDashboard Link : $protoco://${domain}:$port"
-  echo -e "-------- Connection Details ----------- \n"
+  echo -e "-------- Details ----------- \n"
+  echo -e "Version : Beta \n"
+  echo -e "Developer : World Rage"
 }
 
 check_os_version
