@@ -40,13 +40,13 @@ check_xpanel_installed() {
     exit 1
   fi
 
-  db_exists=$(mysql -e "SHOW DATABASES LIKE 'XPanel_plus'" | grep xpanel_plus)
-  if [ -z "$db_exists" ]; then
-    echo -e "${RED}MySQL database 'XPanel_plus' not found. Please configure XPanel correctly.${NC}"
-    exit 1
-  else
-    echo -e "${GREEN}XPanel database 'XPanel_plus' found.${NC}"
-  fi
+#  db_exists=$(mysql -e "SHOW DATABASES LIKE 'XPanel_plus'" | grep xpanel_plus)
+#  if [ -z "$db_exists" ]; then
+#    echo -e "${RED}MySQL database 'XPanel_plus' not found. Please configure XPanel correctly.${NC}"
+#    exit 1
+#  else
+#    echo -e "${GREEN}XPanel database 'XPanel_plus' found.${NC}"
+#  fi
 }
 
 configure_needrestart() {
