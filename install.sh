@@ -99,7 +99,7 @@ add_nginx_config() {
   local default_nginx_config="/etc/nginx/sites-available/default"
 
   # Check if a subdomain exists
-  subdomain=$(dig +short -t A xdashboard.example.com)
+  subdomain=$(dig +short -t A example.com)
 
   if [ -n "$subdomain" ]; then
     domain="example.com"
