@@ -33,22 +33,19 @@ check_os_version() {
 }
 
 check_xpanel_installed() {
-  if command -v xpanel &> /dev/null; then
-    echo -e "${GREEN}Xpanel is installed.${NC}"
+  if [ -d "/var/www/html/cp" ]; then
+    echo -e "${GREEN}XPanel installation directory found.${NC}"
   else
-    echo -e "${RED}Xpanel installation error. Please install Xpanel and try again.${NC}"
+    echo -e "${RED}XPanel installation directory not found. Please install XPanel and try again.${NC}"
     exit 1
   fi
-}
 
-check_xdashboard_installed() {
-  if [ -d "$INSTALL_DIR" ]; then
-    echo -e "${YELLOW}Existing installation found. Removing old files...${NC}"
-    rm -rf "$INSTALL_DIR"
-    if [ $? -ne 0 ]; then
-      echo -e "${RED}Failed to remove old installation.${NC}"
-      exit 1
-    fi
+  db_exists=$(mysql -e "SHOW DATABASES LIKE 'xpanel_plus'" | grep xpanel_plus)
+  if [ -z "$db_exists" ]; then
+    echo -e "${RED}MySQL database 'xpanel_plus' not found. Please configure XPanel correctly.${NC}"
+    exit 1
+  else
+    echo -e "${GREEN}XPanel database 'xpanel_plus' found.${NC}"
   fi
 }
 
@@ -109,14 +106,19 @@ configure_database() {
 add_nginx_config() {
   local default_nginx_config="/etc/nginx/sites-available/default"
 
-  read -p "Enter the domain or IP address of your server: " domain
+  if hostname -I > /dev/null 2>&1; then
+    server_ip=$(hostname -I | awk '{print $1}')
+    domain=$server_ip
+  else
+    domain=$(hostname)
+  fi
+
   read -p "Enter the port number for the new nginx server (leave blank for random): " port
 
   if [ -z "$port" ]; then
     port=$(( ( RANDOM % 1000 )  + 9000 ))
   fi
 
-  # Check if SSL configuration already exists for the domain
   if grep -q "ssl_certificate_key /etc/letsencrypt/live/$domain/privkey.pem;" "$default_nginx_config"; then
     echo -e "${YELLOW}SSL configuration found for $domain.${NC}"
     use_ssl=true
@@ -200,7 +202,6 @@ progress_bar() {
 
 check_os_version
 check_xpanel_installed
-check_xdashboard_installed
 configure_needrestart
 
 echo -e "${YELLOW}Installing XDashboard...${NC}"
