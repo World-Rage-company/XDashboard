@@ -13,7 +13,7 @@ $userId = $_SESSION['id'];
 try {
     $conn = getDbConnection();
 
-    $stmt_user = $conn->prepare('SELECT username, email, mobile, multiuser, start_date, end_date, date_one_connect, customer_user, status, traffic, referral, `desc` FROM users WHERE id = :id');
+    $stmt_user = $conn->prepare('SELECT username, email, mobile, multiuser, start_date, end_date, date_one_connect, customer_user, status, traffic, referral, `desc`, access FROM users WHERE id = :id');
     $stmt_user->bindParam(':id', $userId);
     $stmt_user->execute();
 
@@ -21,6 +21,13 @@ try {
 
     if (!$user) {
         echo "User not found.";
+        exit();
+    }
+
+    if (!$user['access']) {
+        session_unset();
+        session_destroy();
+        header("Location: accounts/login.php");
         exit();
     }
 
