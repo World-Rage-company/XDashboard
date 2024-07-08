@@ -100,7 +100,7 @@ add_nginx_config() {
 
   # Check if a subdomain exists
   subdomain=$(dig +short -t A xdashboard.example.com)
-  
+
   if [ -n "$subdomain" ]; then
     domain="example.com"
   else
