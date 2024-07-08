@@ -9,6 +9,7 @@ NC='\033[0m'
 REPO_URL="https://github.com/World-Rage-company/XDashboard"
 INSTALL_DIR="/var/www/html/xd"
 TEMP_DIR="/tmp/XDashboard"
+DB_NAME="XPanel_plus"
 
 if [ "$EUID" -ne 0 ]; then
   echo -e "${RED}Please run this script as root.${NC}"
