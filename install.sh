@@ -93,6 +93,19 @@ configure_database() {
   sed -i "s/define('DB_USER', '');/define('DB_USER', '$db_user');/" "$INSTALL_DIR/assets/php/database/config.php"
   sed -i "s/define('DB_PASS', '');/define('DB_PASS', '$db_pass');/" "$INSTALL_DIR/assets/php/database/config.php"
   echo -e "${GREEN}Database configured successfully.${NC}"
+
+  column_exists=$(mysql -u"$db_user" -p"$db_pass" -D"$DB_NAME" -Bse "SHOW COLUMNS FROM users LIKE 'access'")
+  if [ -z "$column_exists" ]; then
+    mysql -u"$db_user" -p"$db_pass" -D"$DB_NAME" -e "ALTER TABLE users ADD access BOOLEAN DEFAULT TRUE;"
+    if [ $? -eq 0 ]; then
+      echo -e "${GREEN}Access column added successfully.${NC}"
+    else
+      echo -e "${RED}Failed to add access column.${NC}"
+      exit 1
+    fi
+  else
+    echo -e "${YELLOW}Access column already exists.${NC}"
+  fi
 }
 
 add_nginx_config() {
