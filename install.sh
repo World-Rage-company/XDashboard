@@ -106,12 +106,13 @@ add_nginx_config() {
 
   read -p "Do you want to use SSL for this server? (y/n): " use_ssl
   if [[ "$use_ssl" =~ ^[Yy]$ ]]; then
-    certbot --nginx -d example.com -d www.example.com
-    domain="example.com"
+    # Use SSL, get domain name from user
+    read -p "Enter your domain name (e.g., example.com): " domain
+    certbot --nginx -d "$domain" -d "www.$domain"
     nginx_config="
     server {
         listen $port ssl;
-        server_name $domain;
+        server_name $domain www.$domain;
         root $INSTALL_DIR;
         index index.php index.html;
 
@@ -134,6 +135,7 @@ add_nginx_config() {
     }
     "
   else
+    # No SSL, use server IP as domain name
     if hostname -I > /dev/null 2>&1; then
       server_ip=$(hostname -I | awk '{print $1}')
       domain=$server_ip
@@ -196,7 +198,7 @@ endINSTALL() {
   echo -e "************ XDashboard************ \n"
   echo -e "XDashboard Link : $protoco://${domain}:$port"
   echo -e "-------- Details ----------- \n"
-  echo -e "Version : Beta \n"
+  echo -e "Version : Beta"
   echo -e "Developer : World Rage"
 }
 
