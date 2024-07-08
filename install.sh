@@ -98,11 +98,18 @@ configure_database() {
 add_nginx_config() {
   local default_nginx_config="/etc/nginx/sites-available/default"
 
-  if hostname -I > /dev/null 2>&1; then
-    server_ip=$(hostname -I | awk '{print $1}')
-    domain=$server_ip
+  # Check if a subdomain exists
+  subdomain=$(dig +short -t A xdashboard.example.com)
+  
+  if [ -n "$subdomain" ]; then
+    domain="example.com"
   else
-    domain=$(hostname)
+    if hostname -I > /dev/null 2>&1; then
+      server_ip=$(hostname -I | awk '{print $1}')
+      domain=$server_ip
+    else
+      domain=$(hostname)
+    fi
   fi
 
   read -p "Enter the port number for the new nginx server (leave blank for random): " port
@@ -117,6 +124,7 @@ add_nginx_config() {
   else
     echo -e "${YELLOW}No SSL configuration found for $domain.${NC}"
     use_ssl=false
+    domain=$server_ip
   fi
 
   echo -e "${YELLOW}Adding nginx configuration for $domain on port $port...${NC}"
