@@ -179,8 +179,7 @@ add_nginx_config() {
     "
   fi
 
-  echo "$nginx_config" | sudo tee "$default_nginx_config" > /dev/null
-
+  echo "$nginx_config" | sudo tee -a "$default_nginx_config" > /dev/null
   echo -e "${GREEN}Nginx configuration added successfully.${NC}"
 }
 
