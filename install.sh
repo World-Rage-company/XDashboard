@@ -98,60 +98,16 @@ configure_database() {
 add_nginx_config() {
   local default_nginx_config="/etc/nginx/sites-available/default"
 
-  subdomain=$(dig +short -t A example.com)
-
-  if [ -n "$subdomain" ]; then
-    domain="example.com"
-  else
-    if hostname -I > /dev/null 2>&1; then
-      server_ip=$(hostname -I | awk '{print $1}')
-      domain=$server_ip
-    else
-      domain=$(hostname)
-    fi
-  fi
-
   read -p "Enter the port number for the new nginx server (leave blank for random): " port
 
   if [ -z "$port" ]; then
     port=$(( ( RANDOM % 1000 )  + 9000 ))
   fi
 
-  if grep -q "ssl_certificate_key /etc/letsencrypt/live/$domain/privkey.pem;" "$default_nginx_config"; then
-    echo -e "${YELLOW}SSL configuration found for $domain.${NC}"
-    use_ssl=true
-  else
-    echo -e "${YELLOW}No SSL configuration found for $domain.${NC}"
-    use_ssl=false
-    domain=$server_ip
-  fi
-
-  echo -e "${YELLOW}Adding nginx configuration for $domain on port $port...${NC}"
-
-  nginx_config="
-  server {
-      listen $port;
-      server_name $domain;
-      root $INSTALL_DIR;
-      index index.php index.html;
-
-      location / {
-          try_files \$uri \$uri/ /index.php?\$query_string;
-      }
-
-      location ~ \.php$ {
-          include snippets/fastcgi-php.conf;
-          fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
-          fastcgi_param PHP_VALUE \"memory_limit=4096M\";
-      }
-
-      location ~ /\.ht {
-          deny all;
-      }
-  }
-  "
-
-  if [ "$use_ssl" = true ]; then
+  read -p "Do you want to use SSL for this server? (y/n): " use_ssl
+  if [[ "$use_ssl" =~ ^[Yy]$ ]]; then
+    certbot --nginx -d example.com -d www.example.com  # Replace with actual domain
+    domain="example.com"
     nginx_config="
     server {
         listen $port ssl;
@@ -177,9 +133,40 @@ add_nginx_config() {
         }
     }
     "
+  else
+    if hostname -I > /dev/null 2>&1; then
+      server_ip=$(hostname -I | awk '{print $1}')
+      domain=$server_ip
+    else
+      domain=$(hostname)
+    fi
+
+    echo -e "${YELLOW}No SSL configuration found. Using IP address as server name.${NC}"
+    nginx_config="
+    server {
+        listen $port;
+        server_name $domain;
+        root $INSTALL_DIR;
+        index index.php index.html;
+
+        location / {
+            try_files \$uri \$uri/ /index.php?\$query_string;
+        }
+
+        location ~ \.php$ {
+            include snippets/fastcgi-php.conf;
+            fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+            fastcgi_param PHP_VALUE \"memory_limit=4096M\";
+        }
+
+        location ~ /\.ht {
+            deny all;
+        }
+    }
+    "
   fi
 
-  echo "$nginx_config" | sudo tee -a "$default_nginx_config" > /dev/null
+  echo "$nginx_config" | sudo tee "$default_nginx_config" > /dev/null
 
   echo -e "${GREEN}Nginx configuration added successfully.${NC}"
 }
@@ -199,6 +186,18 @@ progress_bar() {
   echo -e " ${GREEN}Complete${NC}"
 }
 
+endINSTALL() {
+  if [[ "$use_ssl" =~ ^[Yy]$ ]]; then
+    protoco="https"
+  else
+    protoco="http"
+  fi
+
+  echo -e "************ XDashboard************ \n"
+  echo -e "XDashboard Link : $protoco://${domain}:$port"
+  echo -e "-------- Connection Details ----------- \n"
+}
+
 check_os_version
 check_xpanel_installed
 configure_needrestart
@@ -211,5 +210,3 @@ configure_database
 add_nginx_config
 
 systemctl restart nginx
-
-echo -e "${BLUE}To access XDashboard, visit ${NC}${GREEN}https://$domain:$port${NC}"
