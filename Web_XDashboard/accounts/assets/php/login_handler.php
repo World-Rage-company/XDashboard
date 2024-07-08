@@ -15,16 +15,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $conn = getDbConnection();
 
-        $stmt = $conn->prepare('SELECT id, password FROM users WHERE username = :username');
+        $stmt = $conn->prepare('SELECT id, password, access FROM users WHERE username = :username');
         $stmt->bindParam(':username', $username);
         $stmt->execute();
 
         $user = $stmt->fetch();
 
         if ($user && $password === $user['password']) {
-            $_SESSION['id'] = $user['id'];
-
-            echo "success";
+            if ($user['access']) {
+                $_SESSION['id'] = $user['id'];
+                echo "success";
+            } else {
+                echo "Access denied. You do not have permission to log in.";
+            }
         } else {
             echo "Invalid username or password.";
         }
