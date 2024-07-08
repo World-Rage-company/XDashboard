@@ -106,7 +106,7 @@ add_nginx_config() {
 
   read -p "Do you want to use SSL for this server? (y/n): " use_ssl
   if [[ "$use_ssl" =~ ^[Yy]$ ]]; then
-    certbot --nginx -d example.com -d www.example.com  # Replace with actual domain
+    certbot --nginx -d example.com -d www.example.com
     domain="example.com"
     nginx_config="
     server {
