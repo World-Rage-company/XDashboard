@@ -107,6 +107,8 @@ configure_database() {
 }
 
 add_nginx_config() {
+  local default_nginx_config="/etc/nginx/sites-available/default"
+
   read -p "Enter the domain or IP address of your server: " domain
   read -p "Enter the port number for the new nginx server (leave blank for random): " port
 
@@ -114,17 +116,23 @@ add_nginx_config() {
     port=$(( ( RANDOM % 1000 )  + 9000 ))
   fi
 
+  # Check if SSL configuration already exists for the domain
+  if grep -q "ssl_certificate_key /etc/letsencrypt/live/$domain/privkey.pem;" "$default_nginx_config"; then
+    echo -e "${YELLOW}SSL configuration found for $domain.${NC}"
+    use_ssl=true
+  else
+    echo -e "${YELLOW}No SSL configuration found for $domain.${NC}"
+    use_ssl=false
+  fi
+
   echo -e "${YELLOW}Adding nginx configuration for $domain on port $port...${NC}"
 
   nginx_config="
   server {
-      listen $port ssl;
+      listen $port;
       server_name $domain;
       root $INSTALL_DIR;
       index index.php index.html;
-
-      ssl_certificate /etc/letsencrypt/live/$domain/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/$domain/privkey.pem;
 
       location / {
           try_files \$uri \$uri/ /index.php?\$query_string;
@@ -142,7 +150,35 @@ add_nginx_config() {
   }
   "
 
-  echo "$nginx_config" | sudo tee -a /etc/nginx/sites-available/default > /dev/null
+  if [ "$use_ssl" = true ]; then
+    nginx_config="
+    server {
+        listen $port ssl;
+        server_name $domain;
+        root $INSTALL_DIR;
+        index index.php index.html;
+
+        ssl_certificate /etc/letsencrypt/live/$domain/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/$domain/privkey.pem;
+
+        location / {
+            try_files \$uri \$uri/ /index.php?\$query_string;
+        }
+
+        location ~ \.php$ {
+            include snippets/fastcgi-php.conf;
+            fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+            fastcgi_param PHP_VALUE \"memory_limit=4096M\";
+        }
+
+        location ~ /\.ht {
+            deny all;
+        }
+    }
+    "
+  fi
+
+  echo "$nginx_config" | sudo tee -a "$default_nginx_config" > /dev/null
 
   echo -e "${GREEN}Nginx configuration added successfully.${NC}"
 }
