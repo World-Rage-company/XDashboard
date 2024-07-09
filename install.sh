@@ -15,6 +15,7 @@ if [ "$EUID" -ne 0 ]; then
   echo -e "${RED}Please run this script as root.${NC}"
   exit 1
 fi
+
 check_os_version() {
   if [ -f /etc/os-release ]; then
     . /etc/os-release
@@ -31,6 +32,7 @@ check_os_version() {
     exit 1
   fi
 }
+
 check_xpanel_installed() {
   if [ -d "/var/www/html/cp" ]; then
     echo -e "${GREEN}XPanel installation directory found.${NC}"
@@ -39,6 +41,7 @@ check_xpanel_installed() {
     exit 1
   fi
 }
+
 configure_needrestart() {
   echo -e "${YELLOW}Configuring needrestart...${NC}"
   apt-get install -y needrestart
@@ -49,6 +52,7 @@ configure_needrestart() {
     exit 1
   fi
 }
+
 install_xdashboard() {
   echo -e "${YELLOW}Creating installation directory...${NC}"
   mkdir -p "$INSTALL_DIR"
@@ -72,6 +76,7 @@ install_xdashboard() {
   fi
   rm -rf "$TEMP_DIR"
 }
+
 configure_database() {
   read -p "Enter XPanel username: " db_user
   read -sp "Enter XPanel password: " db_pass
@@ -97,6 +102,7 @@ configure_database() {
     echo -e "${YELLOW}Access column already exists.${NC}"
   fi
 }
+
 add_nginx_config() {
   local default_nginx_config="/etc/nginx/sites-available/default"
   read -p "Enter the port number for the new nginx server (leave blank for random): " port
@@ -113,16 +119,20 @@ add_nginx_config() {
         server_name $domain www.$domain;
         root $INSTALL_DIR;
         index index.php index.html;
+
         ssl_certificate /etc/letsencrypt/live/$domain/fullchain.pem;
         ssl_certificate_key /etc/letsencrypt/live/$domain/privkey.pem;
+
         location / {
             try_files \$uri \$uri/ /index.php?\$query_string;
         }
+
         location ~ \.php$ {
             include snippets/fastcgi-php.conf;
             fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
             fastcgi_param PHP_VALUE \"memory_limit=4096M\";
         }
+
         location ~ /\.ht {
             deny all;
         }
@@ -142,14 +152,17 @@ add_nginx_config() {
         server_name $domain;
         root $INSTALL_DIR;
         index index.php index.html;
+
         location / {
             try_files \$uri \$uri/ /index.php?\$query_string;
         }
+
         location ~ \.php$ {
             include snippets/fastcgi-php.conf;
             fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
             fastcgi_param PHP_VALUE \"memory_limit=4096M\";
         }
+
         location ~ /\.ht {
             deny all;
         }
@@ -159,6 +172,7 @@ add_nginx_config() {
   echo "$nginx_config" | sudo tee -a "$default_nginx_config" > /dev/null
   echo -e "${GREEN}Nginx configuration added successfully.${NC}"
 }
+
 progress_bar() {
   local duration=${1:-10}
   local interval=1
@@ -172,6 +186,7 @@ progress_bar() {
   done
   echo -e " ${GREEN}Complete${NC}"
 }
+
 endINSTALL() {
   if [[ "$use_ssl" =~ ^[Yy]$ ]]; then
     protoco="https"
