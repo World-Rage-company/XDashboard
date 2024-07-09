@@ -134,6 +134,8 @@ add_nginx_config() {
 
         location / {
             try_files \$uri \$uri/ /index.php?\$query_string;
+            rewrite ^/(.*)/$ /$1 permanent;
+            rewrite ^/(.*)\.(.*)$ /$1 last;
         }
 
         location ~ \.php$ {
@@ -165,6 +167,8 @@ add_nginx_config() {
 
         location / {
             try_files \$uri \$uri/ /index.php?\$query_string;
+            rewrite ^/(.*)/$ /$1 permanent;
+            rewrite ^/(.*)\.(.*)$ /$1 last;
         }
 
         location ~ \.php$ {
