@@ -58,12 +58,12 @@ body.dark {
     position: relative;
     padding: 15px;
     margin-bottom: 10px;
-    color: #fff;
+    color: var(--text-color);
     display: flex;
     align-items: center;
     border-radius: 5px;
     --color: #0abf30;
-    background-image: linear-gradient(to right, #0abf3055, #22242F 30%);
+    background-image: linear-gradient(to right, #0abf3055, var(--sidebar-color) 30%);
     animation: show_toast 0.3s ease forwards;
 }
 
@@ -84,12 +84,13 @@ body.dark {
 .toast span,
 .toast .close {
     opacity: 0.6;
-    color: #fff;
+    color: var(--text-color);
 }
 
 .toast .close {
     margin-left: 10px;
     cursor: pointer;
+    color: var(--text-color);
 }
 
 @keyframes show_toast {
