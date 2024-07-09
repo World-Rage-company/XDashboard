@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (data === "success") {
                         successTxt.textContent = "Login successful!";
                         successTxt.style.display = "block";
-                        window.location.href = "../index.php";
+                        window.location.href = "index.php";
                     } else {
                         errorTxt.textContent = data;
                         errorTxt.style.display = "block";
