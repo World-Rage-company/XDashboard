@@ -33,7 +33,7 @@ require "assets/php/control_panel_handler.php";
                     <tr>
                         <th>ID</th>
                         <th>USERNAME</th>
-                        <th>ACTION</th>
+                        <th>ACCESS</th>
                     </tr>
                     </thead>
                     <tbody>
