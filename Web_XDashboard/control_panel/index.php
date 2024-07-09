@@ -18,7 +18,47 @@ require "assets/php/control_panel_handler.php";
 
 <div class="container">
     <div class="header-container">
-        <div class="header-content">Header</div>
+        <div class="header-content">
+            <div class="title">XCPL</div>
+            <div class="bottom-content">
+                <li>
+                    <a href="javascript:void(0)" class="logout-link">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text" data-key="logout">Logout</span>
+                    </a>
+                </li>
+
+                <li class="language-dropdown">
+                    <div class="dropdown-toggle" onclick="toggleLanguageMenu()">
+                        <i class='bx bx-globe icon'></i>
+                        <span class="text nav-text" data-key="language">Language</span>
+                        <i class='bx bx-chevron-up icon'></i>
+                    </div>
+                    <ul class="language-menu">
+                        <li><a href="javascript:void(0)" data-lang="fa">فارسی</a></li>
+                        <li><a href="javascript:void(0)" data-lang="en">English</a></li>
+                        <li><a href="javascript:void(0)" data-lang="ru">Русский</a></li>
+                    </ul>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+                    <div class="toggle-switch-mode">
+                        <span class="switch-mode"></span>
+                    </div>
+                </li>
+
+                <li class="mobile-menu-toggle">
+                    <button class="menu-toggle-button" onclick="toggleMobileMenu()">
+                        <i class='bx bx-menu icon'></i>
+                    </button>
+                </li>
+            </div>
+        </div>
     </div>
     <div class="setting-container">
         <div class="setting-header"><i class='bx bx-cog icon'></i>Setting</div>
