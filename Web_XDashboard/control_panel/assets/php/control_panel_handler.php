@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-//if (!isset($_SESSION['id'])) {
-//    header("Location: accounts/login.php");
-//    exit();
-//}
+if (!isset($_SESSION['id'])) {
+    header("Location: accounts/login.php");
+    exit();
+}
 
 //error_reporting(E_ALL);
 //ini_set('display_errors', 1);
