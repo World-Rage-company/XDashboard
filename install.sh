@@ -207,7 +207,7 @@ endINSTALL() {
   fi
 
   echo -e "************ XDashboard ************ \n"
-  echo -e "XCPL Link : $protoco://${domain}:$port/control_panel"
+  echo -e "XCPL Link : $protoco://${domain}:$port/xcpl"
   echo -e "XDashboard Link : $protoco://${domain}:$port"
 }
 
