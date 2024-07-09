@@ -45,11 +45,6 @@ $(document).ready(function() {
     });
 });
 
-function toggleMobileMenu() {
-    const bottomContent = document.querySelector('.bottom-content');
-    bottomContent.classList.toggle('open');
-}
-
 function toggleLanguageMenu() {
     document.querySelector('.language-menu').classList.toggle('active');
 }

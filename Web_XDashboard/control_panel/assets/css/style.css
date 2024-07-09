@@ -161,7 +161,7 @@ body.dark {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 20px;
+    padding: 5px 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: var(--tran-05);
 }
@@ -171,11 +171,13 @@ body.dark {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .header-content .title {
     font-size: 24px;
     font-weight: bold;
+    /*align-items: center;*/
     color: var(--primary-color);
 }
 
@@ -203,6 +205,7 @@ body.dark {
 
 .language-dropdown {
     position: relative;
+    margin-bottom: 10px;
 }
 
 .dropdown-toggle {
@@ -238,7 +241,7 @@ body.dark {
 }
 
 .language-menu li {
-    padding: 8px 16px;
+    padding: 8px 15px;
 }
 
 .language-menu li a {
@@ -315,32 +318,22 @@ body.dark .switch-mode {
     left: 21px;
 }
 
-.menu-toggle-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: none;
-}
-
 @media (max-width: 768px) {
-    .menu-toggle-button {
-        display: block;
-    }
-
     .bottom-content {
-        display: none;
-        position: absolute;
-        top: 50px;
-        left: 0;
-        width: 100%;
-        background-color: var(--sidebar-color);
-        padding: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        z-index: 999;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    .bottom-content.open {
-        display: block;
+    .bottom-content li {
+        margin: 5px;
+    }
+
+    .language-dropdown {
+        margin-bottom: 5px;
+    }
+
+    .mode {
+        margin-top: 10px;
     }
 }
 
@@ -361,12 +354,14 @@ body.dark .switch-mode {
 
 .setting-header {
     width: 100%;
+    color: var(--text-color);
     text-align: left;
     display: flex;
     align-items: center;
 }
 
 .setting-header .icon {
+    color: var(--text-color);
     font-size: 20px;
     margin-right: 2px;
 }
@@ -397,12 +392,14 @@ body.dark .switch-mode {
 
 .users-header {
     width: 100%;
+    color: var(--text-color);
     text-align: left;
     display: flex;
     align-items: center;
 }
 
 .users-header .icon {
+    color: var(--text-color);
     font-size: 20px;
     margin-right: 2px;
 }

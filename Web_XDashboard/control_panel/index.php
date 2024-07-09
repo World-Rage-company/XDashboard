@@ -51,12 +51,6 @@ require "assets/php/control_panel_handler.php";
                         <span class="switch-mode"></span>
                     </div>
                 </li>
-
-                <li class="mobile-menu-toggle">
-                    <button class="menu-toggle-button" onclick="toggleMobileMenu()">
-                        <i class='bx bx-menu icon'></i>
-                    </button>
-                </li>
             </div>
         </div>
     </div>
