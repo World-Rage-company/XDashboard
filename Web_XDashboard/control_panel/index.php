@@ -7,7 +7,7 @@ require "assets/php/control_panel_handler.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XDashboard CPL</title>
+    <title>XCPL</title>
     <link rel="icon" href="../assets/images/xlogo.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
