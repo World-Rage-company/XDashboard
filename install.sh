@@ -1,13 +1,16 @@
 #!/bin/bash
+
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
+
 REPO_URL="https://github.com/World-Rage-company/XDashboard"
 INSTALL_DIR="/var/www/html/xd"
 TEMP_DIR="/tmp/XDashboard"
 DB_NAME="XPanel_plus"
+
 if [ "$EUID" -ne 0 ]; then
   echo -e "${RED}Please run this script as root.${NC}"
   exit 1
@@ -185,10 +188,14 @@ endINSTALL() {
 check_os_version
 check_xpanel_installed
 configure_needrestart
+
 echo -e "${YELLOW}Installing XDashboard...${NC}"
+
 install_xdashboard
 progress_bar
 configure_database
 add_nginx_config
+
 systemctl restart nginx
+
 endINSTALL
