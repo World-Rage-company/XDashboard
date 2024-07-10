@@ -154,14 +154,14 @@ require "assets/php/dashboard_handler.php";
 <section class="training">
     <div class="text" data-key="training">Training</div>
     <div class="training-content">
-        <p>Coming Soon.</p>
+        <p>Coming Soon</p>
     </div>
 </section>
 
 <section class="support">
     <div class="text" data-key="support">Support</div>
     <div class="support-content">
-        <p>Coming Soon.</p>
+        <p>Coming Soon</p>
     </div>
 </section>
 
