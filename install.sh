@@ -89,6 +89,7 @@ configure_database() {
   sed -i "s/define('DB_USER', '');/define('DB_USER', '$db_user');/" "$INSTALL_DIR/assets/php/database/config.php"
   sed -i "s/define('DB_PASS', '');/define('DB_PASS', '$db_pass');/" "$INSTALL_DIR/assets/php/database/config.php"
   echo -e "${GREEN}Database configured successfully.${NC}"
+
   column_exists=$(mysql -u"$db_user" -p"$db_pass" -D"$DB_NAME" -Bse "SHOW COLUMNS FROM users LIKE 'access'")
   if [ -z "$column_exists" ]; then
     mysql -u"$db_user" -p"$db_pass" -D"$DB_NAME" -e "ALTER TABLE users ADD access BOOLEAN DEFAULT TRUE;"
@@ -100,6 +101,54 @@ configure_database() {
     fi
   else
     echo -e "${YELLOW}Access column already exists.${NC}"
+  fi
+
+  table_exists=$(mysql -u"$db_user" -p"$db_pass" -D"$DB_NAME" -Bse "SHOW TABLES LIKE 'tickets'")
+  if [ -z "$table_exists" ]; then
+    mysql -u"$db_user" -p"$db_pass" -D"$DB_NAME" -e "
+    CREATE TABLE tickets (
+        ticket_id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT NOT NULL,
+        admin_id INT DEFAULT NULL,
+        title VARCHAR(255) NOT NULL,
+        description TEXT NOT NULL,
+        status ENUM('open', 'in progress', 'closed') DEFAULT 'open',
+        priority ENUM('high', 'medium', 'low') DEFAULT 'medium',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (admin_id) REFERENCES admins(id)
+    );"
+    if [ $? -eq 0 ]; then
+      echo -e "${GREEN}Table 'tickets' created successfully.${NC}"
+    else
+      echo -e "${RED}Failed to create table 'tickets'.${NC}"
+      exit 1
+    fi
+  else
+    echo -e "${YELLOW}Table 'tickets' already exists.${NC}"
+  fi
+
+  table_exists=$(mysql -u"$db_user" -p"$db_pass" -D"$DB_NAME" -Bse "SHOW TABLES LIKE 'ticket_responses'")
+  if [ -z "$table_exists" ]; then
+    mysql -u"$db_user" -p"$db_pass" -D"$DB_NAME" -e "
+    CREATE TABLE ticket_responses (
+        response_id INT AUTO_INCREMENT PRIMARY KEY,
+        ticket_id INT NOT NULL,
+        responder_id INT NOT NULL,
+        response TEXT NOT NULL,
+        responded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (ticket_id) REFERENCES tickets(ticket_id),
+        FOREIGN KEY (responder_id) REFERENCES admins(id)
+    );"
+    if [ $? -eq 0 ]; then
+      echo -e "${GREEN}Table 'ticket_responses' created successfully.${NC}"
+    else
+      echo -e "${RED}Failed to create table 'ticket_responses'.${NC}"
+      exit 1
+    fi
+  else
+    echo -e "${YELLOW}Table 'ticket_responses' already exists.${NC}"
   fi
 }
 
