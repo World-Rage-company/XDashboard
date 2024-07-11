@@ -153,8 +153,41 @@ require "assets/php/dashboard_handler.php";
 
 <section class="training">
     <div class="text" data-key="training">Training</div>
-    <div class="training-content">
-        <p>Coming Soon</p>
+    <div class="training-container" data-key="apple">
+        <div class="training-header">
+            <div class="header-content">
+                <i class='bx bxl-apple'></i>
+                <span>Apple</span>
+            </div>
+            <i class='bx bx-chevron-down toggle-icon'></i>
+        </div>
+        <div class="training-content">
+            <p>Coming Soon</p>
+        </div>
+    </div>
+    <div class="training-container" data-key="android">
+        <div class="training-header">
+            <div class="header-content">
+                <i class='bx bxl-android'></i>
+                <span>Android</span>
+            </div>
+            <i class='bx bx-chevron-down toggle-icon'></i>
+        </div>
+        <div class="training-content">
+            <p>Coming Soon</p>
+        </div>
+    </div>
+    <div class="training-container" data-key="windows">
+        <div class="training-header">
+            <div class="header-content">
+                <i class='bx bxl-windows'></i>
+                <span>Windows</span>
+            </div>
+            <i class='bx bx-chevron-down toggle-icon'></i>
+        </div>
+        <div class="training-content">
+            <p>Coming Soon</p>
+        </div>
     </div>
 </section>
 
