@@ -108,8 +108,8 @@ configure_database() {
     mysql -u"$db_user" -p"$db_pass" -D"$DB_NAME" -e "
     CREATE TABLE tickets (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        user_id INT NOT NULL,
-        admin_id INT DEFAULT NULL,
+        user_id BIGINT UNSIGNED NOT NULL,
+        admin_id BIGINT UNSIGNED DEFAULT NULL,
         title VARCHAR(255) NOT NULL,
         description TEXT NOT NULL,
         status ENUM('open', 'in progress', 'closed') DEFAULT 'open',
@@ -135,10 +135,10 @@ configure_database() {
     CREATE TABLE ticket_responses (
         id INT AUTO_INCREMENT PRIMARY KEY,
         ticket_id INT NOT NULL,
-        responder_id INT NOT NULL,
+        responder_id BIGINT UNSIGNED NOT NULL,
         response TEXT NOT NULL,
         responded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (ticket_id) REFERENCES tickets(ticket_id),
+        FOREIGN KEY (ticket_id) REFERENCES tickets(id),
         FOREIGN KEY (responder_id) REFERENCES admins(id)
     );"
     if [ $? -eq 0 ]; then
