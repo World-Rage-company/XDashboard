@@ -28,19 +28,6 @@ require "assets/php/control_panel_handler.php";
                     </a>
                 </li>
 
-                <li class="language-dropdown">
-                    <div class="dropdown-toggle" onclick="toggleLanguageMenu()">
-                        <i class='bx bx-globe icon'></i>
-                        <span class="text nav-text" data-key="language">Language</span>
-                        <i class='bx bx-chevron-up icon'></i>
-                    </div>
-                    <ul class="language-menu">
-                        <li><a href="javascript:void(0)" data-lang="fa">فارسی</a></li>
-                        <li><a href="javascript:void(0)" data-lang="en">English</a></li>
-                        <li><a href="javascript:void(0)" data-lang="ru">Русский</a></li>
-                    </ul>
-                </li>
-
                 <li class="mode">
                     <div class="sun-moon">
                         <i class='bx bx-moon icon moon'></i>

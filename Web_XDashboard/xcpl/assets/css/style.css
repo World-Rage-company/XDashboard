@@ -48,7 +48,7 @@ body.dark {
 .notifications {
     position: fixed;
     top: 10px;
-    right: 10px;
+    right: 5px;
     z-index: 10000;
     width: 400px;
     max-width: 90%;
@@ -203,57 +203,6 @@ body.dark {
     color: var(--primary-color);
 }
 
-.language-dropdown {
-    position: relative;
-    margin-bottom: 10px;
-}
-
-.dropdown-toggle {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    color: var(--text-color);
-    transition: var(--tran-03);
-}
-
-.dropdown-toggle:hover {
-    color: var(--primary-color);
-}
-
-.language-menu {
-    position: absolute;
-    top: 35px;
-    right: 0;
-    background: var(--sidebar-color);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    list-style: none;
-    padding: 8px 0;
-    display: none;
-    transform-origin: top;
-    transform: scaleY(0);
-    transition: transform var(--tran-05) ease-in-out;
-}
-
-.language-menu.active {
-    display: block;
-    transform: scaleY(1);
-}
-
-.language-menu li {
-    padding: 8px 15px;
-}
-
-.language-menu li a {
-    color: var(--text-color);
-    text-decoration: none;
-    transition: var(--tran-03);
-}
-
-.language-menu li a:hover {
-    color: var(--primary-color);
-}
-
 .mode {
     display: flex;
     align-items: center;
@@ -326,10 +275,6 @@ body.dark .switch-mode {
 
     .bottom-content li {
         margin: 5px;
-    }
-
-    .language-dropdown {
-        margin-bottom: 5px;
     }
 
     .mode {
