@@ -86,6 +86,11 @@ require "assets/php/dashboard_handler.php";
     </div>
 </nav>
 
+<div class="message-container">
+    <div id="error-message" class="error-message"></div>
+    <div id="success-message" class="success-message"></div>
+</div>
+
 <section class="dashboard">
     <div class="text" data-key="dashboard">Dashboard</div>
     <div class="cards">

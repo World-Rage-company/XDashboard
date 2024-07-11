@@ -24,11 +24,65 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // ==== support script ==== //
 document.addEventListener("DOMContentLoaded", () => {
-    const addTicketBtn = document.getElementById('add-ticket-btn');
+    const addTicketForm = document.querySelector('.new-ticket-content');
+    const ticketSubmitBtn = document.getElementById('ticket-submit');
     const ticketCancelBtn = document.getElementById('ticket-cancel');
+    const addTicketBtn = document.getElementById('add-ticket-btn');
     const newTicketContainer = document.querySelector('.new-ticket-container');
     const supportHeader = document.querySelector('.support-header');
     const supportContent = document.querySelector('.support-content');
+    const successMessage = document.getElementById('success-message');
+    const errorMessage = document.getElementById('error-message');
+
+    ticketSubmitBtn.addEventListener('click', async () => {
+        const titleField = document.getElementById('title');
+        const descriptionField = document.getElementById('description');
+        const priorityField = document.getElementById('priority');
+
+        const title = titleField.value;
+        const description = descriptionField.value;
+        const priority = priorityField.value;
+
+        if (!title || !description || !priority) {
+            displayErrorMessage("All fields are required.");
+            return;
+        }
+
+        try {
+            const response = await fetch('assets/php/addticket_handler.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, description, priority })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                if (result.status === 'success') {
+                    displaySuccessMessage(result.message);
+                    // Clear input fields
+                    titleField.value = '';
+                    descriptionField.value = '';
+                    priorityField.value = 'medium'; // Reset to default priority
+                    setTimeout(() => {
+                        newTicketContainer.style.display = 'none';
+                        supportHeader.style.display = 'flex';
+                        supportContent.style.display = 'block';
+                    }, 4000);
+                } else {
+                    displayErrorMessage(result.message);
+                }
+            } else {
+                displayErrorMessage('Error submitting ticket: ' + response.statusText);
+                console.error('Error submitting ticket:', response.statusText);
+            }
+        } catch (error) {
+            displayErrorMessage('Error: ' + error.message);
+            console.error('Error:', error);
+        }
+    });
 
     addTicketBtn.addEventListener('click', () => {
         newTicketContainer.style.display = 'block';
@@ -41,33 +95,20 @@ document.addEventListener("DOMContentLoaded", () => {
         supportHeader.style.display = 'flex';
         supportContent.style.display = 'block';
     });
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-    const addTicketForm = document.querySelector('.new-ticket-content');
-    const ticketSubmitBtn = document.getElementById('ticket-submit');
+    function displaySuccessMessage(message) {
+        successMessage.textContent = message;
+        successMessage.style.display = 'block';
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 2000);
+    }
 
-    ticketSubmitBtn.addEventListener('click', async () => {
-        const title = document.getElementById('title').value;
-        const description = document.getElementById('description').value;
-        const priority = document.getElementById('priority').value;
-
-        try {
-            const response = await fetch('assets/php/addticket_handler.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ title, description, priority })
-            });
-
-            if (response.ok) {
-                console.log('Ticket submitted successfully!');
-            } else {
-                console.error('Error submitting ticket:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    });
+    function displayErrorMessage(message) {
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block';
+        setTimeout(() => {
+            errorMessage.style.display = 'none';
+        }, 3000);
+    }
 });
