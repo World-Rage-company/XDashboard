@@ -589,7 +589,7 @@ body.dark .training .training-content p {
 }
 
 .support {
-    display:none;
+    display: none;
     position: absolute;
     top: 0;
     left: 250px;
@@ -604,6 +604,36 @@ body.dark .training .training-content p {
     font-weight: 500;
     color: var(--text-color);
     padding: 12px 60px;
+}
+
+.support .support-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 60px;
+}
+
+.support .add-ticket-btn {
+    display: flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color var(--tran-03);
+    text-decoration: none;
+}
+
+.support .add-ticket-btn i {
+    margin-right: 8px;
+    font-size: 20px;
+}
+
+.support .add-ticket-btn:hover {
+    background-color: var(--primary-color-light);
+    color: var(--text-color);
 }
 
 .sidebar.close ~ .support {
@@ -624,4 +654,148 @@ body.dark .support .text {
     padding: 20px;
     border-radius: 10px;
     margin: 10px 20px;
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.support .new-ticket-container {
+    background: var(--sidebar-color);
+    color: var(--text-color);
+    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 20px;
+    display: none;
+}
+
+.new-ticket-header {
+    width: 100%;
+    color: var(--text-color);
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.new-ticket-header .icon {
+    color: var(--text-color);
+    font-size: 20px;
+    margin-right: 2px;
+}
+
+.new-ticket-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+.new-ticket-content > * {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.input {
+    border: 2px solid transparent;
+    width: 90%;
+    height: 2.5em;
+    padding-left: 0.8em;
+    outline: none;
+    overflow: hidden;
+    background-color: #F3F3F3;
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+
+.input-desc {
+    border: 2px solid transparent;
+    max-width: 90%;
+    width: 100%;
+    min-height: 100px;
+    max-height: 300px;
+    padding-left: 0.8em;
+    outline: none;
+    overflow: auto;
+    background-color: #F3F3F3;
+    border-radius: 10px;
+    transition: all 0.5s;
+    resize: vertical;
+    margin-bottom: 10px;
+}
+
+.input:hover, .input:focus, .input-desc:hover, .input-desc:focus {
+    border: 2px solid #4A9DEC;
+    box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+    background-color: white;
+}
+
+.new-ticket-content button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.new-ticket-content button:hover {
+    background-color: var(--primary-color-light);
+}
+
+.input-select {
+    border: 2px solid transparent;
+    max-width: 90%;
+    width: 100%;
+    height: 2.5em;
+    padding-left: 0.8em;
+    outline: none;
+    overflow: hidden;
+    background-color: #F3F3F3;
+    border-radius: 10px;
+    transition: all 0.5s;
+    margin-bottom: 10px;
+}
+
+.input-select:hover, .input-select:focus {
+    border: 2px solid #4A9DEC;
+    box-shadow: 0px 0px 0px 7px rgba(74, 157, 236, 0.2);
+    background-color: white;
+}
+
+.input-select option {
+    background-color: white;
+    color: black;
+}
+
+.input-select option:checked {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.input-select:focus {
+    border: 2px solid #4A9DEC;
+    box-shadow: 0px 0px 0px 7px rgba(74, 157, 236, 0.2);
+    background-color: white;
+    outline: none;
+}
+
+.input-select:hover {
+    border: 2px solid #4A9DEC;
+    box-shadow: 0px 0px 0px 7px rgba(74, 157, 236, 0.2);
+    background-color: white;
+}
+
+.btn-ticket-group {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.btn-ticket-group button {
+    margin-left: 10px;
 }

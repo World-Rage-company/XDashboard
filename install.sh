@@ -107,7 +107,7 @@ configure_database() {
   if [ -z "$table_exists" ]; then
     mysql -u"$db_user" -p"$db_pass" -D"$DB_NAME" -e "
     CREATE TABLE tickets (
-        ticket_id INT AUTO_INCREMENT PRIMARY KEY,
+        id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,
         admin_id INT DEFAULT NULL,
         title VARCHAR(255) NOT NULL,
@@ -133,7 +133,7 @@ configure_database() {
   if [ -z "$table_exists" ]; then
     mysql -u"$db_user" -p"$db_pass" -D"$DB_NAME" -e "
     CREATE TABLE ticket_responses (
-        response_id INT AUTO_INCREMENT PRIMARY KEY,
+        id INT AUTO_INCREMENT PRIMARY KEY,
         ticket_id INT NOT NULL,
         responder_id INT NOT NULL,
         response TEXT NOT NULL,

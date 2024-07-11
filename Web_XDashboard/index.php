@@ -193,11 +193,38 @@ require "assets/php/dashboard_handler.php";
 
 <section class="support">
     <div class="text" data-key="support">Support</div>
+    <div class="support-header">
+        <button class="add-ticket-btn" id="add-ticket-btn">
+            <i class='bx bx-plus'></i>
+            <span data-key="addTicket">New Ticket</span>
+        </button>
+    </div>
+    <div class="new-ticket-container">
+        <div class="new-ticket-header"><i class='bx bx-message-detail icon'></i>New Ticket</div>
+        <div class="new-ticket-content">
+
+            <input type="text" id="title" name="title" class="input" placeholder="Title" required>
+
+            <textarea id="description" name="description" rows="4" cols="50" class="input-desc" placeholder="Description" required></textarea>
+
+            <select id="priority" name="priority" class="input-select">
+                <option value="high">Priority High</option>
+                <option value="medium" selected>Priority Medium</option>
+                <option value="low">Priority Low</option>
+            </select>
+
+            <div class="btn-ticket-group">
+                <button class="ticket-cancel" id="ticket-cancel">Cancel</button>
+                <button class="ticket-submit" id="ticket-submit">Submit Ticket</button>
+            </div>
+        </div>
+    </div>
     <div class="support-content">
         <p>Coming Soon</p>
     </div>
 </section>
 
+<script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/script.js"></script>
 <script src="assets/js/script_nav_menu.js"></script>
 <script src="assets/js/translations.js"></script>
