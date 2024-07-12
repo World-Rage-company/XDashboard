@@ -50,7 +50,6 @@ try {
 
     if (!$tickets) {
         echo json_encode(["message" => "No tickets found."]);
-        exit();
     }
 
     $username = $user['username'];
