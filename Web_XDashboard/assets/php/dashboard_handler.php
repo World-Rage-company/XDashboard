@@ -42,14 +42,14 @@ try {
         exit();
     }
 
-    $stmt_ticket = $conn->prepare('SELECT title, description, status, priority, created_at FROM tickets WHERE id = :id');
-    $stmt_ticket->bindParam(':id', $userId);
+    $stmt_ticket = $conn->prepare('SELECT title, description, status, priority, created_at FROM tickets WHERE user_id = :user_id');
+    $stmt_ticket->bindParam(':user_id', $userId);
     $stmt_ticket->execute();
 
-    $ticket = $stmt_ticket->fetch();
+    $tickets = $stmt_ticket->fetchAll(PDO::FETCH_ASSOC);
 
-    if (!$ticket) {
-        echo "No tickets found.";
+    if (!$tickets) {
+        echo json_encode(["message" => "No tickets found."]);
         exit();
     }
 
@@ -69,12 +69,6 @@ try {
     $download = $traffic_info['download'];
     $upload = $traffic_info['upload'];
     $total_traffic = $traffic_info['total'];
-
-    $title = $ticket['title'];
-    $description = $ticket['description'];
-    $status = $ticket['status'];
-    $priority = $ticket['priority'];
-    $created_at = $ticket['created_at'];
 
     // Function to format traffic
     function formatTraffic($traffic) {

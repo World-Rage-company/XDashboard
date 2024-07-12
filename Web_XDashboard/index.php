@@ -206,7 +206,28 @@ require "assets/php/dashboard_handler.php";
             </button>
         </div>
         <div class="ticket-content">
-            <p>Coming Soon</p>
+            <div class="table__body">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Priority</th>
+                        <th>Creation date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($tickets as $ticket): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($ticket['title']); ?></td>
+                            <td><?php echo htmlspecialchars($ticket['status']); ?></td>
+                            <td><?php echo htmlspecialchars($ticket['priority']); ?></td>
+                            <td><?php echo htmlspecialchars($ticket['created_at']); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div class="new-ticket-container">
@@ -223,6 +244,17 @@ require "assets/php/dashboard_handler.php";
                 <button class="ticket-cancel" id="ticket-cancel">Cancel</button>
                 <button class="ticket-submit" id="ticket-submit">Submit Ticket</button>
             </div>
+        </div>
+    </div>
+    <div class="op-ticket-container">
+        <div class="op-ticket-header">
+            <button class="close-op-ticket" id="btn-close-op-ticket"><i class='bx bx-arrow-back'></i></button>
+            Ticket
+        </div>
+        <div class="op-ticket-content">
+            <div class="details-ticket"></div>
+            <div class="title-ticket"></div>
+            <div class="-ticket"></div>
         </div>
     </div>
 </section>

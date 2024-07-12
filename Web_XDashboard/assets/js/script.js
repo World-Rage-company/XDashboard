@@ -31,8 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const newTicketContainer = document.querySelector('.new-ticket-container');
     const supportHeader = document.querySelector('.support-header');
     const supportContent = document.querySelector('.support-content');
+    const openticketcontainer = document.querySelector('.op-ticket-container');
     const successMessage = document.getElementById('success-message');
     const errorMessage = document.getElementById('error-message');
+
+    const ticketRows = document.querySelectorAll('tbody tr');
 
     ticketSubmitBtn.addEventListener('click', async () => {
         const titleField = document.getElementById('title');
@@ -93,6 +96,15 @@ document.addEventListener("DOMContentLoaded", () => {
         newTicketContainer.style.display = 'none';
         supportHeader.style.display = 'flex';
         supportContent.style.display = 'flex';
+    });
+
+    ticketRows.forEach(row => {
+        row.addEventListener('click', () => {
+            newTicketContainer.style.display = 'none';
+            supportHeader.style.display = 'none';
+            supportContent.style.display = 'none';
+            openticketcontainer.style.display = 'flex';
+        });
     });
 
     function displaySuccessMessage(message) {
