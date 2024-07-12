@@ -252,9 +252,17 @@ require "assets/php/dashboard_handler.php";
             Ticket
         </div>
         <div class="op-ticket-content">
-            <div class="details-ticket"></div>
-            <div class="title-ticket"></div>
-            <div class="-ticket"></div>
+            <div class="op-details-ticket">
+                <div class="status-ticket"></div>
+                <div class="priority-ticket"></div>
+                <div class="Creation-ticket"></div>
+            </div>
+            <div class="op-title-ticket">
+                <p class="title-ticket"></p>
+            </div>
+            <div class="op-description-ticket">
+                <p class="description-ticket"></p>
+            </div>
         </div>
     </div>
 </section>
