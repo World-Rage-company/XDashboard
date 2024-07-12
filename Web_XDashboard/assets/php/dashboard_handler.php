@@ -42,7 +42,7 @@ try {
         exit();
     }
 
-    $stmt_ticket = $conn->prepare('SELECT title, description, status, priority, created_at FROM tickets WHERE user_id = :user_id');
+    $stmt_ticket = $conn->prepare('SELECT id, title, description, status, priority, created_at FROM tickets WHERE user_id = :user_id');
     $stmt_ticket->bindParam(':user_id', $userId);
     $stmt_ticket->execute();
 
