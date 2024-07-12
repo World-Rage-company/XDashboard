@@ -218,7 +218,7 @@ require "assets/php/dashboard_handler.php";
                     </thead>
                     <tbody>
                     <?php foreach ($tickets as $ticket): ?>
-                        <tr>
+                        <tr data-ticket-id="<?php echo htmlspecialchars($ticket['id']); ?>">
                             <td><?php echo htmlspecialchars($ticket['title']); ?></td>
                             <td><?php echo htmlspecialchars($ticket['status']); ?></td>
                             <td><?php echo htmlspecialchars($ticket['priority']); ?></td>
@@ -256,10 +256,14 @@ require "assets/php/dashboard_handler.php";
                 <p class="title-ticket"></p>
                 <div class="status-ticket"></div>
                 <div class="priority-ticket"></div>
-                <div class="Creation-ticket"></div>
+                <div class="creation-ticket"></div>
             </div>
             <div class="op-description-ticket">
                 <p class="description-ticket"></p>
+            </div>
+            <div class="op-responses-ticket">
+                <h3>Responses:</h3>
+                <ul class="responses-list"></ul>
             </div>
         </div>
     </div>

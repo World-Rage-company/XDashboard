@@ -759,14 +759,14 @@ td {
 }
 
 .op-ticket-container {
-    min-height: 100px;
-    margin: 10px 20px;
+    min-height: 300px;
+    margin: 20px;
     background: var(--sidebar-color);
     border-radius: 16px;
     display: none;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
+    padding: 20px;
     flex-shrink: 0;
     opacity: 1;
     transition: opacity 0.3s ease;
@@ -778,6 +778,8 @@ td {
     text-align: left;
     display: flex;
     align-items: center;
+    font-size: 1.2rem;
+    padding: 10px 0;
 }
 
 .close-op-ticket {
@@ -787,11 +789,12 @@ td {
     color: #fff;
     border: none;
     border-radius: 25px;
-    padding: 5px 5px;
-    margin-right: 4px;
+    padding: 8px 16px;
+    margin-right: 10px;
     cursor: pointer;
     transition: background-color var(--tran-03);
     text-decoration: none;
+    font-size: 1rem;
 }
 
 .close-op-ticket:hover {
@@ -801,30 +804,60 @@ td {
 
 .op-ticket-content {
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    padding: 20px 0;
 }
 
 .op-details-ticket {
     width: 100%;
-    height: 30px;
-    margin: 10px 20px;
+    margin: 20px 0;
+    padding: 10px;
     border-radius: 10px;
-    text-align: center;
+    text-align: left;
     background: var(--widget-color);
+}
+
+.op-details-ticket p {
+    margin: 5px 0;
 }
 
 .op-description-ticket {
     width: 100%;
-    height: 100px;
-    margin: 10px 20px;
+    margin: 20px 0;
+    padding: 10px;
     border-radius: 10px;
-    text-align: center;
+    text-align: left;
     background: var(--widget-color);
+}
+
+.op-description-ticket p {
+    margin: 5px 0;
+}
+
+.op-responses-ticket {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--widget-color);
+}
+
+.op-responses-ticket h3 {
+    margin-bottom: 10px;
+}
+
+.responses-list {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+.responses-list li {
+    margin-bottom: 8px;
 }
 
 .support .new-ticket-container {
