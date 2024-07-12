@@ -67,6 +67,7 @@ body.dark {
     display: flex;
     align-items: center;
     margin-top: 10px;
+    user-select: none;
 }
 
 .sidebar header .image,
@@ -108,6 +109,8 @@ body.dark {
 .sidebar header .image-text {
     display: flex;
     align-items: center;
+    user-select: none;
+    pointer-events: none;
 }
 
 .sidebar header .logo-text {
@@ -198,6 +201,7 @@ body.dark .sidebar header .toggle {
     text-decoration: none;
     transition: var(--tran-03);
     color: var(--text-color);
+    user-select: none;
 }
 
 .sidebar li a:hover {
@@ -291,6 +295,7 @@ body.dark .mode .sun-moon i.moon {
     transform-origin: bottom;
     transform: scaleY(0);
     transition: transform var(--tran-05) ease-in-out;
+    user-select: none;
 }
 
 .language-menu.active {
@@ -421,6 +426,7 @@ html[dir="rtl"] .card-content p strong[data-key="upload"]:after {
     width: calc(100% - 250px);
     background-color: var(--body-color);
     transition: var(--tran-05);
+    user-select: none;
 }
 
 .dashboard .text {
@@ -524,6 +530,7 @@ body.dark .dashboard .text {
     transition: var(--tran-05);
     color: var(--text-color);
     overflow-y: auto;
+    user-select: none;
 }
 
 .training .text {
@@ -633,6 +640,7 @@ body.dark .training .training-content p {
     width: calc(100% - 250px);
     background-color: var(--body-color);
     transition: var(--tran-05);
+    user-select: none;
 }
 
 .support .text {
