@@ -42,6 +42,17 @@ try {
         exit();
     }
 
+    $stmt_ticket = $conn->prepare('SELECT title, description, status, priority, created_at FROM tickets WHERE id = :id');
+    $stmt_ticket->bindParam(':id', $userId);
+    $stmt_ticket->execute();
+
+    $ticket = $stmt_ticket->fetch();
+
+    if (!$ticket) {
+        echo "No tickets found.";
+        exit();
+    }
+
     $username = $user['username'];
     $email = $user['email'];
     $mobile = $user['mobile'];
@@ -58,6 +69,12 @@ try {
     $download = $traffic_info['download'];
     $upload = $traffic_info['upload'];
     $total_traffic = $traffic_info['total'];
+
+    $title = $ticket['title'];
+    $description = $ticket['description'];
+    $status = $ticket['status'];
+    $priority = $ticket['priority'];
+    $created_at = $ticket['created_at'];
 
     // Function to format traffic
     function formatTraffic($traffic) {

@@ -198,11 +198,16 @@ require "assets/php/dashboard_handler.php";
 
 <section class="support">
     <div class="text" data-key="support">Support</div>
-    <div class="support-header">
-        <button class="add-ticket-btn" id="add-ticket-btn">
-            <i class='bx bx-plus'></i>
-            <span data-key="addTicket">New Ticket</span>
-        </button>
+    <div class="support-content">
+        <div class="support-header">
+            <button class="add-ticket-btn" id="add-ticket-btn">
+                <i class='bx bx-plus'></i>
+                <span data-key="addTicket">New Ticket</span>
+            </button>
+        </div>
+        <div class="ticket-content">
+            <p>Coming Soon</p>
+        </div>
     </div>
     <div class="new-ticket-container">
         <div class="new-ticket-header"><i class='bx bx-message-detail icon'></i>New Ticket</div>
@@ -219,9 +224,6 @@ require "assets/php/dashboard_handler.php";
                 <button class="ticket-submit" id="ticket-submit">Submit Ticket</button>
             </div>
         </div>
-    </div>
-    <div class="support-content">
-        <p>Coming Soon</p>
     </div>
 </section>
 

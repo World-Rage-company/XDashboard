@@ -642,13 +642,6 @@ body.dark .training .training-content p {
     padding: 12px 60px;
 }
 
-.support .support-header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px 60px;
-}
-
 .support .add-ticket-btn {
     display: flex;
     align-items: center;
@@ -682,17 +675,32 @@ body.dark .support .text {
 }
 
 .support .support-content {
-    background: var(--sidebar-color);
-    color: var(--text-color);
-    -webkit-backdrop-filter: blur(25px);
-    backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 20px;
-    border-radius: 10px;
+    min-height: 100px;
     margin: 10px 20px;
-    display: block;
+    background: var(--sidebar-color);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    flex-shrink: 0;
     opacity: 1;
     transition: opacity 0.3s ease;
+}
+
+.support-header {
+    color: var(--text-color);
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.ticket-content {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: var(--text-color);
 }
 
 .support .new-ticket-container {

@@ -62,14 +62,13 @@ document.addEventListener("DOMContentLoaded", () => {
             if (response.ok) {
                 if (result.status === 'success') {
                     displaySuccessMessage(result.message);
-                    // Clear input fields
                     titleField.value = '';
                     descriptionField.value = '';
-                    priorityField.value = 'medium'; // Reset to default priority
+                    priorityField.value = 'medium';
                     setTimeout(() => {
                         newTicketContainer.style.display = 'none';
                         supportHeader.style.display = 'flex';
-                        supportContent.style.display = 'block';
+                        supportContent.style.display = 'flex';
                     }, 4000);
                 } else {
                     displayErrorMessage(result.message);
@@ -93,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ticketCancelBtn.addEventListener('click', () => {
         newTicketContainer.style.display = 'none';
         supportHeader.style.display = 'flex';
-        supportContent.style.display = 'block';
+        supportContent.style.display = 'flex';
     });
 
     function displaySuccessMessage(message) {
