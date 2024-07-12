@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const ticketSubmitBtn = document.getElementById('ticket-submit');
     const ticketCancelBtn = document.getElementById('ticket-cancel');
     const addTicketBtn = document.getElementById('add-ticket-btn');
+    const closeopticket = document.getElementById('btn-close-op-ticket');
     const newTicketContainer = document.querySelector('.new-ticket-container');
     const supportHeader = document.querySelector('.support-header');
     const supportContent = document.querySelector('.support-content');
@@ -105,6 +106,13 @@ document.addEventListener("DOMContentLoaded", () => {
             supportContent.style.display = 'none';
             openticketcontainer.style.display = 'flex';
         });
+    });
+
+    closeopticket.addEventListener('click', () => {
+        newTicketContainer.style.display = 'none';
+        openticketcontainer.style.display = 'none';
+        supportHeader.style.display = 'flex';
+        supportContent.style.display = 'flex';
     });
 
     function displaySuccessMessage(message) {
