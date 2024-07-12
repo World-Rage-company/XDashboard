@@ -15,6 +15,7 @@
     --primary-color: #5A67D8;
     --primary-color-light: #EBF4FF;
     --primary-color-pb: #D6E0FF;
+    --widget-color: #f5f5fd;
     --toggle-color: #A0AEC0;
     --text-color: #2D3748;
 
@@ -41,6 +42,7 @@ body.dark {
     --primary-color: #4A90E2;
     --primary-color-light: #1C1C1C;
     --primary-color-pb: #282828;
+    --widget-color: #212128;
     --toggle-color: #BBBBBB;
     --text-color: #E0E0E0;
 }
@@ -763,7 +765,6 @@ td {
     border-radius: 16px;
     display: none;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     padding: 10px;
     flex-shrink: 0;
@@ -810,8 +811,20 @@ td {
 
 .op-details-ticket {
     width: 100%;
-    height: 100%;
+    height: 30px;
+    margin: 10px 20px;
+    border-radius: 10px;
     text-align: center;
+    background: var(--widget-color);
+}
+
+.op-description-ticket {
+    width: 100%;
+    height: 100px;
+    margin: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    background: var(--widget-color);
 }
 
 .support .new-ticket-container {
