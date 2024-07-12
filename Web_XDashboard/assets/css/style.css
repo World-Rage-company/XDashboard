@@ -801,6 +801,16 @@ td {
 .op-ticket-content {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.op-details-ticket {
+    width: 100%;
+    height: 100%;
     text-align: center;
 }
 
