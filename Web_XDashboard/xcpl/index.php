@@ -45,6 +45,10 @@ require "assets/php/control_panel_handler.php";
         <div class="setting-header"><i class='bx bx-cog icon'></i>Setting</div>
         <div class="setting-content">Coming Soon.</div>
     </div>
+    <div class="Support-container">
+        <div class="Support-header"><i class='bx bx-support icon'></i>Support</div>
+        <div class="Support-content">Coming Soon.</div>
+    </div>
     <div class="users-container">
         <div class="users-header"><i class='bx bx-user icon'></i>Users</div>
         <div class="users-content">
