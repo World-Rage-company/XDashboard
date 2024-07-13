@@ -156,14 +156,18 @@ add_nginx_config() {
   local default_nginx_config="/etc/nginx/sites-available/default"
   local server_block
   local existing_port
-
   if [ -d "/var/www/html/xd" ]; then
-    echo -e "${YELLOW}Directory /var/www/html/xd already exists. Skipping Nginx configuration.${NC}"
-    return
+    echo -e "${YELLOW}Directory /var/www/html/xd already exists. Checking existing nginx configuration.${NC}"
+    server_block=$(awk -v RS="" "/root $INSTALL_DIR;/ {print; exit}" "$default_nginx_config")
+    if [ -n "$server_block" ]; then
+      existing_port=$(echo "$server_block" | grep -oP '(?<=listen )\d+')
+      echo -e "${GREEN}Found existing server block with port: $existing_port${NC}"
+      port=$existing_port
+      return
+    else
+      echo -e "${RED}No existing server block found for $INSTALL_DIR. Adding new configuration.${NC}"
+    fi
   fi
-
-  echo -e "${YELLOW}Directory /var/www/html/xd does not exist. Proceeding with Nginx configuration.${NC}"
-
   read -p "Enter the port number for the new nginx server (leave blank for random): " port
   if [ -z "$port" ]; then
     port=$(( ( RANDOM % 1000 )  + 9000 ))
@@ -178,20 +182,16 @@ add_nginx_config() {
         server_name $domain www.$domain;
         root $INSTALL_DIR;
         index index.php index.html;
-
         ssl_certificate /etc/letsencrypt/live/$domain/fullchain.pem;
         ssl_certificate_key /etc/letsencrypt/live/$domain/privkey.pem;
-
         location / {
             try_files \$uri \$uri/ /index.php?\$query_string;
         }
-
         location ~ \.php$ {
             include snippets/fastcgi-php.conf;
             fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
             fastcgi_param PHP_VALUE \"memory_limit=4096M\";
         }
-
         location ~ /\.ht {
             deny all;
         }
@@ -211,17 +211,14 @@ add_nginx_config() {
         server_name $domain;
         root $INSTALL_DIR;
         index index.php index.html;
-
         location / {
             try_files \$uri \$uri/ /index.php?\$query_string;
         }
-
         location ~ \.php$ {
             include snippets/fastcgi-php.conf;
             fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
             fastcgi_param PHP_VALUE \"memory_limit=4096M\";
         }
-
         location ~ /\.ht {
             deny all;
         }
