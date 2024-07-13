@@ -158,18 +158,11 @@ add_nginx_config() {
   local existing_port
 
   if [ -d "/var/www/html/xd" ]; then
-    echo -e "${YELLOW}Directory /var/www/html/xd already exists. Checking existing nginx configuration.${NC}"
-
-    server_block=$(awk -v RS="" "/root $INSTALL_DIR;/ {print; exit}" "$default_nginx_config")
-    if [ -n "$server_block" ]; then
-      existing_port=$(echo "$server_block" | grep -oP '(?<=listen )\d+')
-      echo -e "${GREEN}Found existing server block with port: $existing_port${NC}"
-      port=$existing_port
-      return
-    else
-      echo -e "${RED}No existing server block found for $INSTALL_DIR. Adding new configuration.${NC}"
-    fi
+    echo -e "${YELLOW}Directory /var/www/html/xd already exists. Skipping Nginx configuration.${NC}"
+    return
   fi
+
+  echo -e "${YELLOW}Directory /var/www/html/xd does not exist. Proceeding with Nginx configuration.${NC}"
 
   read -p "Enter the port number for the new nginx server (leave blank for random): " port
   if [ -z "$port" ]; then
