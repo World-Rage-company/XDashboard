@@ -120,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         successMessage.style.display = 'block';
         setTimeout(() => {
             successMessage.style.display = 'none';
+            location.reload();
         }, 2000);
     }
 

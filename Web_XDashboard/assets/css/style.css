@@ -819,6 +819,7 @@ td {
     border-radius: 10px;
     text-align: left;
     background: var(--widget-color);
+    color: var(--text-color);
 }
 
 .op-details-ticket p {
@@ -832,6 +833,7 @@ td {
     border-radius: 10px;
     text-align: left;
     background: var(--widget-color);
+    color: var(--text-color);
 }
 
 .op-description-ticket p {
@@ -844,6 +846,7 @@ td {
     padding: 10px;
     border-radius: 10px;
     background: var(--widget-color);
+    color: var(--text-color);
 }
 
 .op-responses-ticket h3 {
