@@ -14,7 +14,10 @@ require "assets/php/control_panel_handler.php";
 </head>
 <body>
 
-<div class="notifications"></div>
+<div class="message-container">
+    <div id="error-message" class="error-message"></div>
+    <div id="success-message" class="success-message"></div>
+</div>
 
 <div class="container">
     <div class="header-container">

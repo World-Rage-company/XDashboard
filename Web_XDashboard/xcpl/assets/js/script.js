@@ -1,21 +1,3 @@
-let notifications = document.querySelector('.notifications');
-
-function createToast(type, icon, title, text) {
-    let newToast = document.createElement('div');
-    newToast.innerHTML = `
-        <div class="toast ${type}">
-            <i class="bx ${icon}"></i>
-            <div class="content">
-                <div class="title">${title}</div>
-                <span>${text}</span>
-            </div>
-            <i class="bx bx-x close" onclick="(this.parentElement).remove()"></i>
-        </div>`;
-
-    notifications.appendChild(newToast);
-    setTimeout(() => newToast.remove(), 5000);
-}
-
 $(document).ready(function() {
     $('.toggle-switch').click(function() {
         $(this).toggleClass('on');
@@ -32,13 +14,25 @@ $(document).ready(function() {
             success: function(response) {
                 let res = JSON.parse(response);
                 if (res.status === 'success') {
-                    createToast('success', 'bx-check-circle', 'Success', res.message);
+                    $('#success-message').text(res.message).show();
+                    $('#error-message').hide();
+                    setTimeout(() => {
+                        $('#success-message').fadeOut();
+                    }, 2000);
                 } else {
-                    createToast('error', 'bx-x-circle', 'Error', res.message);
+                    $('#error-message').text(res.message).show();
+                    $('#success-message').hide();
+                    setTimeout(() => {
+                        $('#error-message').fadeOut();
+                    }, 2000);
                 }
             },
             error: function(xhr, status, error) {
-                createToast('error', 'bx-x-circle', 'Error', 'Error updating access state.');
+                $('#error-message').text('Error updating access state.').show();
+                $('#success-message').hide();
+                setTimeout(() => {
+                    $('#error-message').fadeOut();
+                }, 2000);
                 console.error('Error updating access state:', error);
             }
         });
