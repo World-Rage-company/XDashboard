@@ -10,6 +10,7 @@
 ### Features and Capabilities
 :green_circle: display details to the user<br>
 :green_circle: learn connection<br>
+:green_circle: The link to download the required applications<br>
 :green_circle: add ticketing to the seller or admin<br>
 :green_circle: giving access to the user for login<br>
 :green_circle: Support for Farsi, English and Russian languages<br>
@@ -31,3 +32,17 @@ To Update the X-Dashboard simply input the following command in the terminal:<br
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/World-Rage-company/XDashboard/master/Update.sh --ipv4)
 ```
+
+### Supporting us :hearts:
+If X-Panel has been useful to you with supporting us you can help developing this web application.<br>
+
+<p align="left">
+<a href="https://plisio.net/donate/KL6W5z8k" target="_blank"><img src="https://plisio.net/img/donate/donate_light_icons_mono.png" alt="Donate Crypto on Plisio" width="240" height="80" /></a><br>
+
+|                    TRX                   |                       ETH                         |                    Litecoin                       |
+| ---------------------------------------- |:-------------------------------------------------:| -------------------------------------------------:|
+| ```TYQraQ5JJXKyVD6BpTGoDYNhiLbFRfzVtV``` |  ```0x6cc08b2057EfAe4d76Af531e145DeEd4B73c9D7e``` | ```ltc1q6gq4espx74lp6jvhmr0jmxlu4al0uwemmzwdv4``` |	
+
+</p>
+
+<h6 align="center">World Rage | XPanel<h6>
