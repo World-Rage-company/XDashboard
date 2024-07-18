@@ -39,9 +39,9 @@ If X-Panel has been useful to you with supporting us you can help developing thi
 <p align="left">
 <a href="https://plisio.net/donate/KL6W5z8k" target="_blank"><img src="https://plisio.net/img/donate/donate_light_icons_mono.png" alt="Donate Crypto on Plisio" width="240" height="80" /></a><br>
 
-|                    TRX                   |                       ETH                         |                    Litecoin                       |
-| ---------------------------------------- |:-------------------------------------------------:| -------------------------------------------------:|
-| ```TYQraQ5JJXKyVD6BpTGoDYNhiLbFRfzVtV``` |  ```0x6cc08b2057EfAe4d76Af531e145DeEd4B73c9D7e``` | ```ltc1q6gq4espx74lp6jvhmr0jmxlu4al0uwemmzwdv4``` |	
+|                    TRX                   |                       ETH                         |                    Litecoin                       |                            World Rage USDT (ERC20) |
+| ---------------------------------------- |:-------------------------------------------------:| -------------------------------------------------:|---------------------------------------------------:|
+| ```TYQraQ5JJXKyVD6BpTGoDYNhiLbFRfzVtV``` |  ```0x6cc08b2057EfAe4d76Af531e145DeEd4B73c9D7e``` | ```ltc1q6gq4espx74lp6jvhmr0jmxlu4al0uwemmzwdv4``` |  ```0x68dB92a33476bfc06a775EFD1bF4E51dAA8e4489```  |
 
 </p>
 
