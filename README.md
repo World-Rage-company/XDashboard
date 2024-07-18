@@ -8,7 +8,11 @@
 <p align="center">
 
 ### Features and Capabilities
-:green_circle:<br>
+:green_circle: display details to the user<br>
+:green_circle: learn connection<br>
+:green_circle: add ticketing to the seller or admin<br>
+:green_circle: giving access to the user for login<br>
+:green_circle: Support for Farsi, English and Russian languages<br>
 
 ### Installation guide
 Supported operating systems<br>
