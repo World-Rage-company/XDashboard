@@ -14,7 +14,7 @@
 :green_circle: add ticketing to the seller or admin<br>
 :green_circle: giving access to the user for login<br>
 :green_circle: Support for Farsi, English and Russian languages<br>
-:yellow_circle: Personalization, Store, ...<br>
+:yellow_circle: Personalization, S..., ...<br>
 
 ### Installation guide
 Supported operating systems<br>
