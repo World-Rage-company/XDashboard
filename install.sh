@@ -42,6 +42,23 @@ check_xpanel_installed() {
   fi
 }
 
+check_xdashboard_installed() {
+  if [ -d "$INSTALL_DIR" ]; then
+    echo -e "${GREEN}XDashboard is already installed.${NC}"
+    read -p "Do you want to update XDashboard? (y/n): " update_choice
+    if [[ "$update_choice" =~ ^[Yy]$ ]]; then
+      echo -e "${YELLOW}Updating XDashboard...${NC}"
+      bash <(curl -Ls https://raw.githubusercontent.com/World-Rage-company/XDashboard/master/Update.sh --ipv4)
+      exit 0
+    else
+      echo -e "${YELLOW}Update canceled.${NC}"
+      exit 0
+    fi
+  else
+    install_xdashboard
+  fi
+}
+
 configure_needrestart() {
   echo -e "${YELLOW}Configuring needrestart...${NC}"
   apt-get install -y needrestart
@@ -264,6 +281,7 @@ endINSTALL() {
 
 check_os_version
 check_xpanel_installed
+check_xdashboard_installed
 configure_needrestart
 
 echo -e "${YELLOW}Installing XDashboard...${NC}"
