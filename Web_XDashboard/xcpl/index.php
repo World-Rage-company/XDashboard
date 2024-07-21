@@ -50,7 +50,32 @@ require "assets/php/control_panel_handler.php";
     </div>
     <div class="Support-container">
         <div class="Support-header"><i class='bx bx-support icon'></i>Support</div>
-        <div class="Support-content">Coming Soon.</div>
+        <div class="Support-content">
+            <div class="ticket-content">
+                <div class="table__body">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th>Priority</th>
+                            <th>Creation date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($tickets as $ticket): ?>
+                            <tr data-ticket-id="<?php echo htmlspecialchars($ticket['id']); ?>">
+                                <td><?php echo htmlspecialchars($ticket['title']); ?></td>
+                                <td><?php echo htmlspecialchars($ticket['status']); ?></td>
+                                <td><?php echo htmlspecialchars($ticket['priority']); ?></td>
+                                <td><?php echo htmlspecialchars($ticket['created_at']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="users-container">
         <div class="users-header"><i class='bx bx-user icon'></i>Users</div>
