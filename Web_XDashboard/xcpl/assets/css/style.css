@@ -289,45 +289,25 @@ body.dark .switch-mode {
     margin-right: 2px;
 }
 
-.Support-container {
-    display: flex;
-    flex-direction: column;
+.Support-content {
     width: 100%;
     height: 100%;
-    background-color: var(--background-color); /* اضافه شده برای پس‌زمینه کلی */
-}
-
-.Support-header {
-    font-size: 1.5rem;
-    padding: 1rem;
-    background-color: var(--header-background-color); /* اضافه شده برای رنگ پس‌زمینه هدر */
-    color: var(--header-text-color); /* اضافه شده برای رنگ متن هدر */
-    text-align: center;
-    border-bottom: 1px solid var(--border-color); /* اضافه شده برای رنگ مرز زیر هدر */
-}
-
-.Support-content {
-    display: flex;
     flex-direction: column;
-    width: 100%;
-    height: calc(100% - 3rem); /* با توجه به ارتفاع هدر و padding آن */
-    overflow: auto; /* برای اضافه کردن اسکرول به محتوای طولانی */
-    justify-content: center; /* برای وسط‌چین کردن محتوا عمودی */
-    align-items: center; /* برای وسط‌چین کردن محتوا افقی */
+    justify-content: space-between;
+    align-items: center;
     text-align: center;
     color: var(--text-color);
-    padding: 1rem;
 }
 
 .ticket-content {
     width: 100%;
-    max-width: 1200px; /* برای جلوگیری از پهن شدن زیاد جدول */
+    height: 100%;
     text-align: center;
     color: var(--text-color);
 }
 
 .table__body {
-    width: 100%;
+    width: 95%;
     background-color: var(--body-color);
     margin: 0.8rem auto;
     border-radius: 0.6rem;
@@ -347,11 +327,11 @@ th, td {
 thead th {
     position: sticky;
     top: 0;
+    left: 0;
     background: var(--primary-color);
     color: var(--toggle-color);
     cursor: pointer;
     text-transform: capitalize;
-    z-index: 1; /* برای اطمینان از اینکه هدر بالای محتوا قرار می‌گیرد */
 }
 
 tbody tr {
@@ -365,7 +345,9 @@ tbody tr:hover {
 }
 
 td {
-    padding: 1rem;
+    width: 35px;
+    height: 25px;
+    margin-right: 0.5rem;
     vertical-align: middle;
 }
 
