@@ -339,7 +339,7 @@ tbody tr {
 }
 
 tbody tr:hover {
-    background-color: var(--primary-color);
+    /*background-color: var(--primary-color);*/
     color: var(--text-color);
     cursor: pointer;
 }
