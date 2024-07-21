@@ -296,6 +296,7 @@ body.dark .switch-mode {
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    color: var(--text-color);
 }
 
 .users-container {
