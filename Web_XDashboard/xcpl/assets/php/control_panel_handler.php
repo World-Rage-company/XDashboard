@@ -19,9 +19,9 @@ $stmt_ticket->execute();
 $tickets = $stmt_ticket->fetchAll(PDO::FETCH_ASSOC);
 
 if ($tickets) {
-    echo json_encode($tickets);
+    json_encode($tickets);
 } else {
-    echo json_encode(["message" => "No tickets found."]);
+    json_encode(["message" => "No tickets found."]);
 }
 
 $query = "SELECT id, username, access FROM users";
