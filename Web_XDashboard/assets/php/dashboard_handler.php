@@ -49,7 +49,7 @@ try {
     $tickets = $stmt_ticket->fetchAll(PDO::FETCH_ASSOC);
 
     if (!$tickets) {
-        echo json_encode(["message" => "No tickets found."]);
+        json_encode(["message" => "No tickets found."]);
     }
 
     $username = $user['username'];
