@@ -263,7 +263,7 @@ body.dark .switch-mode {
 .Support-container {
     width: 100%;
     max-width: 700px;
-    height: 80px;
+    min-height: 100px;
     margin: 10px 0;
     background: var(--sidebar-color);
     border-radius: 16px;
