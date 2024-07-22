@@ -65,7 +65,7 @@ require "assets/php/control_panel_handler.php";
                         </thead>
                         <tbody>
                         <?php foreach ($tickets as $ticket): ?>
-                            <tr data-ticket-id="<?php echo htmlspecialchars($ticket['id']); ?>" onclick="window.location.href='ticket_details.php?id=<?php echo htmlspecialchars($ticket['id']); ?>'">
+                            <tr data-ticket-id="<?php echo htmlspecialchars($ticket['id']); ?>">
                                 <td><?php echo htmlspecialchars($ticket['username']); ?></td>
                                 <td><?php echo htmlspecialchars($ticket['title']); ?></td>
                                 <td><?php echo htmlspecialchars($ticket['status']); ?></td>
