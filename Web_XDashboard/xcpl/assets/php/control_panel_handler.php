@@ -13,15 +13,19 @@ require_once __DIR__ . '/../../../assets/php/database/db.php';
 
 $conn = getDbConnection();
 
-$stmt_ticket = $conn->prepare('SELECT id, title, description, status, priority, created_at FROM tickets');
+$stmt_ticket = $conn->prepare('
+    SELECT tickets.id, tickets.title, tickets.description, tickets.status, tickets.priority, tickets.created_at, users.username
+    FROM tickets
+    JOIN users ON tickets.user_id = users.id
+');
 $stmt_ticket->execute();
 
 $tickets = $stmt_ticket->fetchAll(PDO::FETCH_ASSOC);
 
 if ($tickets) {
-    json_encode($tickets);
+    echo json_encode($tickets);
 } else {
-    json_encode(["message" => "No tickets found."]);
+    echo json_encode(["message" => "No tickets found."]);
 }
 
 $query = "SELECT id, username, access FROM users";

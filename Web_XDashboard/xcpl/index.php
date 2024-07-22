@@ -56,6 +56,7 @@ require "assets/php/control_panel_handler.php";
                     <table>
                         <thead>
                         <tr>
+                            <th>Username</th>
                             <th>Title</th>
                             <th>Status</th>
                             <th>Priority</th>
@@ -65,6 +66,7 @@ require "assets/php/control_panel_handler.php";
                         <tbody>
                         <?php foreach ($tickets as $ticket): ?>
                             <tr data-ticket-id="<?php echo htmlspecialchars($ticket['id']); ?>">
+                                <td><?php echo htmlspecialchars($ticket['username']); ?></td>
                                 <td><?php echo htmlspecialchars($ticket['title']); ?></td>
                                 <td><?php echo htmlspecialchars($ticket['status']); ?></td>
                                 <td><?php echo htmlspecialchars($ticket['priority']); ?></td>
