@@ -261,7 +261,25 @@ body {
     z-index: 2;
 }
 
-.sidebar.open ~ .dashboard-section, .user-section, .setting-section {
+.sidebar.open ~ .dashboard-section {
     left: 250px;
     width: calc(100% - 250px);
+}
+
+.sidebar.open ~ .user-section {
+    left: 250px;
+    width: calc(100% - 250px);
+}
+
+.sidebar.open ~ .setting-section {
+    left: 250px;
+    width: calc(100% - 250px);
+}
+
+section {
+    display: none;
+}
+
+section.active {
+    display: block;
 }

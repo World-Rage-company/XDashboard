@@ -27,14 +27,14 @@ require "assets/php/control_panel_handler.php";
     </div>
     <ul class="nav-list">
         <li>
-            <a href="javascript:void(0)">
+            <a href="#dashboard">
                 <i class="bx bx-grid-alt"></i>
                 <span class="links_name">Dashboard</span>
             </a>
             <span class="tooltip">Dashboard</span>
         </li>
         <li>
-            <a href="javascript:void(0)">
+            <a href="#user">
                 <i class="bx bx-user"></i>
                 <span class="links_name">User</span>
             </a>
@@ -48,7 +48,7 @@ require "assets/php/control_panel_handler.php";
             <span class="tooltip">Order</span>
         </li>-->
         <li>
-            <a href="javascript:void(0)">
+            <a href="#setting">
                 <i class="bx bx-cog"></i>
                 <span class="links_name">Setting</span>
             </a>
@@ -67,11 +67,11 @@ require "assets/php/control_panel_handler.php";
     </ul>
 </div>
 
-<section class="dashboard-section"></section>
+<section id="dashboard" class="dashboard-section active"></section>
 
-<section class="user-section"></section>
+<section id="user" class="user-section"></section>
 
-<section class="setting-section"></section>
+<section id="setting" class="setting-section"></section>
 
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/script.js"></script>
