@@ -13,21 +13,6 @@ require_once __DIR__ . '/../../../assets/php/database/db.php';
 
 $conn = getDbConnection();
 
-$stmt_ticket = $conn->prepare('
-    SELECT tickets.id, tickets.title, tickets.description, tickets.status, tickets.priority, tickets.created_at, users.username
-    FROM tickets
-    JOIN users ON tickets.user_id = users.id
-');
-$stmt_ticket->execute();
-
-$tickets = $stmt_ticket->fetchAll(PDO::FETCH_ASSOC);
-
-if ($tickets) {
-    json_encode($tickets);
-} else {
-    json_encode(["message" => "No tickets found."]);
-}
-
 $query = "SELECT id, username, access FROM users";
 $result = $conn->query($query);
 
@@ -46,4 +31,16 @@ if ($result) {
 
 } else {
     echo "Error retrieving users data.";
+}
+
+$admin_id = $_SESSION['admin_id'];
+$admin_query = "SELECT * FROM admins WHERE id = :admin_id";
+$stmt_admin = $conn->prepare($admin_query);
+$stmt_admin->bindParam(':admin_id', $admin_id, PDO::PARAM_INT);
+$stmt_admin->execute();
+
+if ($stmt_admin->rowCount() > 0) {
+    $admin_data = $stmt_admin->fetch(PDO::FETCH_ASSOC);
+} else {
+    echo "Error retrieving admin data.";
 }
