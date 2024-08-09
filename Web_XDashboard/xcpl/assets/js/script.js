@@ -1,48 +1,15 @@
-$(document).ready(function() {
-    $('.toggle-switch').click(function() {
-        $(this).toggleClass('on');
-        let userId = $(this).data('userid');
-        let newAccess = $(this).hasClass('on') ? 1 : 0;
+let sidebar = document.querySelector(".sidebar");
+let closeBtn = document.querySelector("#btn-sidebar");
 
-        $.ajax({
-            type: 'POST',
-            url: 'assets/php/access_user_handler.php',
-            data: {
-                userId: userId,
-                newAccess: newAccess
-            },
-            success: function(response) {
-                let res = JSON.parse(response);
-                if (res.status === 'success') {
-                    $('#success-message').text(res.message).show();
-                    $('#error-message').hide();
-                    setTimeout(() => {
-                        $('#success-message').fadeOut();
-                    }, 2000);
-                } else {
-                    $('#error-message').text(res.message).show();
-                    $('#success-message').hide();
-                    setTimeout(() => {
-                        $('#error-message').fadeOut();
-                    }, 2000);
-                }
-            },
-            error: function(xhr, status, error) {
-                $('#error-message').text('Error updating access state.').show();
-                $('#success-message').hide();
-                setTimeout(() => {
-                    $('#error-message').fadeOut();
-                }, 2000);
-                console.error('Error updating access state:', error);
-            }
-        });
-    });
+closeBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("open");
+    menuBtnChange();
 });
 
-function toggleLanguageMenu() {
-    document.querySelector('.language-menu').classList.toggle('active');
+function menuBtnChange() {
+    if(sidebar.classList.contains("open")){
+        closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+    }else {
+        closeBtn.classList.replace("bx-menu-alt-right","bx-menu");
+    }
 }
-
-document.querySelector('.toggle-switch-mode').addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-});
