@@ -1,11 +1,20 @@
 /* Google Font Import - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@font-face {
+    font-family: 'Yekan';
+    src: url('../font/yekan/Yekan.eot');
+    src: url('../font/yekan/Yekan.eot?#iefix') format('embedded-opentype'), url('../font/yekan/Yekan.woff2') format('woff2'), url('../font/yekan/Yekan.woff') format('woff'), url('../font/yekan/Yekan.otf') format('opentype'), url('../font/yekan/Yekan.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+    font-display: auto;
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Yekan';
 }
 
 :root {
